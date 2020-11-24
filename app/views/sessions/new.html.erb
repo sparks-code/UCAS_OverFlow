@@ -1,2 +1,21 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<% provide(:title, "用户登录") %>
+
+<h1>登录</h1>
+
+<!-- 显示错误信息 -->
+<% flash.each do |key, value| %>
+    <%= key %>：<%= value %>
+<% end %>
+
+<%= form_for(:session, url: login_path) do |f| %>
+
+<%= f.label :email %>
+<%= f.email_field :email%>
+
+<%= f.label :password %>
+<%= f.password_field :password %>
+
+<%= f.submit "登录"%>
+<% end %>
+
+<p>新用户？ <%= link_to "立即注册！", new_user_path %></p>
