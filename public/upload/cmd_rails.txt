@@ -1,0 +1,18 @@
+我的工作：
+1.修改application 加入debug信息
+
+插入：
+user = User.new
+user.name = 'educoder'
+user.email = 'educoder@educoder.net'
+user.save
+
+User.create(name: 'educoder', email: 'educoder@educoder.net')
+
+删除
+删除一条数据库记录则十分简单，我们在上面生成的 user 对象的基础上继续： user.destroy
+
+查询
+User.find(1) 上述语句会查找数据库表 users 中 id 为 1 的数据库记录
+User.where(name: 'educoder', email: 'educoder@educoder.net').first/all/last
+
