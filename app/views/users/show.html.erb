@@ -1,0 +1,74 @@
+<html>
+
+<head>
+  <title><%= @user.name %></title>
+</head>
+
+<body>
+  <%= GravatarImage(@user) %>
+
+  <h3>基本信息：</h3>
+  <HR>
+    <table border="0">
+      <tr>
+        <td>姓名：</td>
+        <td><%= @user.name %></td>
+      </tr>
+    
+      <tr>
+        <td>性别：</td>
+        <td><%= @user.sex %></td>
+      </tr>
+
+      <tr>
+        <td>邮箱：</td>
+        <td><%= @user.email %></td>
+      </tr>
+
+      <tr>
+        <td>管理员：</td>
+        <td><%=  @user.TranslateAdmin %></td>
+      </tr>
+    </table>
+    
+    <h3>学习信息：</h3>
+    <HR>
+    <table border="0">
+      <tr>
+        <td>年级：</td>
+        <td><%= @user.TranslateGrade %></td>
+      </tr>
+
+      <tr>
+        <td>学号：</td>
+        <td><%= @user.user_number %></td>
+      </tr>
+
+      <tr>
+        <td>学院：</td>
+        <td><%= @user.TranslateAcademy %></td>
+      </tr>
+    
+      <tr>
+        <td>研究所：</td>
+        <td><%= @user.TranslateOrganization %></td>
+      </tr>
+    
+      <tr>
+        <td>专业：</td>
+        <td><%= @user.TranslateProject %></td>
+      </tr>
+    
+      <tr>
+        <td>学生类型：</td>
+        <td><%= @user.TranslateType %></td>
+      </tr>
+
+    </table>
+</body>
+
+<%= link_to '编辑', edit_user_path(@user) %> |
+<%= link_to '回退', users_path %>
+
+</html>
+

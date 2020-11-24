@@ -1,0 +1,2 @@
+class FileTransfer < ApplicationRecord
+end

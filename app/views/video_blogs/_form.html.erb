@@ -1,0 +1,52 @@
+<%= form_with(model: video_blog, local: true) do |form| %>
+  <% if video_blog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(video_blog.errors.count, "error") %> prohibited this video_blog from being saved:</h2>
+
+      <ul>
+      <% video_blog.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tag %>
+    <%= form.text_field :tag %>
+  </div>
+
+  <div class="field">
+    <%= form.label :response_count %>
+    <%= form.number_field :response_count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :click_count %>
+    <%= form.number_field :click_count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :accessment %>
+    <%= form.number_field :accessment %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :file_transfer_id %>
+    <%= form.text_field :file_transfer_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

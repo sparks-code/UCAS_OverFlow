@@ -1,0 +1,2 @@
+module VideoBlogsHelper
+end

@@ -1,0 +1,2 @@
+class AcademyOrganization < ApplicationRecord
+end

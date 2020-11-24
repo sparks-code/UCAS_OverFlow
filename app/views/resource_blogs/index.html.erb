@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Resource Blogs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Tag</th>
+      <th>Response count</th>
+      <th>Click count</th>
+      <th>Accessment</th>
+      <th>User</th>
+      <th>File transfer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resource_blogs.each do |resource_blog| %>
+      <tr>
+        <td><%= resource_blog.title %></td>
+        <td><%= resource_blog.tag %></td>
+        <td><%= resource_blog.response_count %></td>
+        <td><%= resource_blog.click_count %></td>
+        <td><%= resource_blog.accessment %></td>
+        <td><%= resource_blog.user %></td>
+        <td><%= resource_blog.file_transfer %></td>
+        <td><%= link_to 'Show', resource_blog %></td>
+        <td><%= link_to 'Edit', edit_resource_blog_path(resource_blog) %></td>
+        <td><%= link_to 'Destroy', resource_blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Resource Blog', new_resource_blog_path %>

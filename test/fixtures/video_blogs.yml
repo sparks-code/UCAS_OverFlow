@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  tag: MyString
+  response_count: 1
+  click_count: 1
+  accessment: 1
+  user: one
+  file_transfer: one
+
+two:
+  title: MyString
+  tag: MyString
+  response_count: 1
+  click_count: 1
+  accessment: 1
+  user: two
+  file_transfer: two

@@ -1,0 +1,2 @@
+class ResourceReply < ApplicationRecord
+end

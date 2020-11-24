@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @text_blog.title %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @text_blog.tag %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @text_blog.content %>
+</p>
+
+<p>
+  <strong>Response count:</strong>
+  <%= @text_blog.response_count %>
+</p>
+
+<p>
+  <strong>Click count:</strong>
+  <%= @text_blog.click_count %>
+</p>
+
+<p>
+  <strong>Accessment:</strong>
+  <%= @text_blog.accessment %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @text_blog.user %>
+</p>
+
+<p>
+  <strong>File transfer:</strong>
+  <%= @text_blog.file_transfer %>
+</p>
+
+<%= link_to 'Edit', edit_text_blog_path(@text_blog) %> |
+<%= link_to 'Back', text_blogs_path %>

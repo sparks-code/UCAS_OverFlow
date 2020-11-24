@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Video Blogs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Tag</th>
+      <th>Response count</th>
+      <th>Click count</th>
+      <th>Accessment</th>
+      <th>User</th>
+      <th>File transfer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @video_blogs.each do |video_blog| %>
+      <tr>
+        <td><%= video_blog.title %></td>
+        <td><%= video_blog.tag %></td>
+        <td><%= video_blog.response_count %></td>
+        <td><%= video_blog.click_count %></td>
+        <td><%= video_blog.accessment %></td>
+        <td><%= video_blog.user %></td>
+        <td><%= video_blog.file_transfer %></td>
+        <td><%= link_to 'Show', video_blog %></td>
+        <td><%= link_to 'Edit', edit_video_blog_path(video_blog) %></td>
+        <td><%= link_to 'Destroy', video_blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Video Blog', new_video_blog_path %>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @video_blog.title %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @video_blog.tag %>
+</p>
+
+<p>
+  <strong>Response count:</strong>
+  <%= @video_blog.response_count %>
+</p>
+
+<p>
+  <strong>Click count:</strong>
+  <%= @video_blog.click_count %>
+</p>
+
+<p>
+  <strong>Accessment:</strong>
+  <%= @video_blog.accessment %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @video_blog.user %>
+</p>
+
+<p>
+  <strong>File transfer:</strong>
+  <%= @video_blog.file_transfer %>
+</p>
+
+<%= link_to 'Edit', edit_video_blog_path(@video_blog) %> |
+<%= link_to 'Back', video_blogs_path %>

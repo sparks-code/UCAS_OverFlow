@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>File Transfers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>File path</th>
+      <th>Introduction</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @file_transfers.each do |file_transfer| %>
+      <tr>
+        <td><%= file_transfer.file_path %></td>
+        <td><%= file_transfer.introduction %></td>
+        <td><%= link_to 'Show', file_transfer %></td>
+        <td><%= link_to 'Edit', edit_file_transfer_path(file_transfer) %></td>
+        <td><%= link_to 'Destroy', file_transfer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New File Transfer', new_file_transfer_path %>

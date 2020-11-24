@@ -1,0 +1,2 @@
+class VideoReply < ApplicationRecord
+end
