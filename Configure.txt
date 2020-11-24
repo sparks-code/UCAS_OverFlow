@@ -30,3 +30,9 @@ rails generate model Project code_number:string project_name:string
 
 #迁移
 rails db:migrate
+
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+# Users:db 添加remember_token
+rails generate migration add_rememer_digest_to_users password_digest:string  
+
+

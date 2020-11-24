@@ -8,14 +8,17 @@
 <% end %>
 
 <%= form_for(:session, url: login_path) do |f| %>
+    <%= f.label :account, "学号/邮箱" %>
+    <%= f.text_field :account%>
 
-<%= f.label :email %>
-<%= f.email_field :email%>
+    <%= f.label :password, "密码" %>
+    <%= f.password_field :password %>
 
-<%= f.label :password %>
-<%= f.password_field :password %>
+    <%= f.label :remember_me do %>
+        <%= f.check_box :remember_me %><span>下次自动登录</span>
+    <% end %>
 
-<%= f.submit "登录"%>
+    <%= f.submit "登录"%>
 <% end %>
 
 <p>新用户？ <%= link_to "立即注册！", new_user_path %></p>
