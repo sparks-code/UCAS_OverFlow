@@ -1,6 +1,13 @@
-<h1>Editing Video Blog</h1>
+<% provide(:title, '修改视频') %>
+<h1>修改视频信息</h1>
 
-<%= render 'form', video_blog: @video_blog %>
 
-<%= link_to 'Show', @video_blog %> |
-<%= link_to 'Back', video_blogs_path %>
+<%= form_for @video_blog do |f| %>
+    <%= f.label :title, "标题" %>
+    <%= f.text_field :title %>
+    <%= f.label :tag, "标签" %>
+    <%= f.text_field :tag %>
+    <br><br>
+    <%= f.submit "保存" %>
+<% end %>
+<%= link_to '返回', video_blog_path(@video_blog) %>

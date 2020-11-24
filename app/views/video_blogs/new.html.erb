@@ -1,6 +1,11 @@
 <% provide(:title, '发布视频') %>
 <h1>发布视频</h1>
 
+<ul>
+<% @video_blog.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+<% end %>
+</ul>
 
 <%= form_for @video_blog do |f| %>
     <%= f.label :title, "标题" %>

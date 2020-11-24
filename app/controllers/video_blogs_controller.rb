@@ -25,6 +25,9 @@ class VideoBlogsController < ApplicationController
   # POST /video_blogs.json
   def create
     @video_blog = User.find(1).video_blogs.new(video_blog_params)
+    @video_blog.response_count = 0
+    @video_blog.click_count = 0
+    @video_blog.accessment = 0
     unless request.get?
       filename = uploadfile(params[:video_blog][:file_path])
       @video_blog.file_path = filename
@@ -46,17 +49,21 @@ class VideoBlogsController < ApplicationController
   end
 
   def uploadfile(file)
-    if !file.original_filename.empty?
-      @filename = file.original_filename
-      #设置目录路径，如果目录不存在，生成新目录
-      FileUtils.mkdir("#{Rails.root}/public/upload") unless File.exist?("#{Rails.root}/public/upload")
-      #写入文件
-      ##wb 表示通过二进制方式写，可以保证文件不损坏
-      File.open("#{Rails.root}/public/upload/#{@filename}", "wb") do |f|
-        f.write(file.read)
-      end
-      return @filename
+    @filename = file.original_filename
+    errors.add("", "文件为空") if @filename.empty?
+    # @file_size = @filename.size
+    # errors.add("", "贴图文件太大，应不能超过10MB") if @picture_size > 104875760  
+    # @file_type = @filename.content_type.chomp
+
+
+    #设置目录路径，如果目录不存在，生成新目录
+    FileUtils.mkdir("#{Rails.root}/public/upload") unless File.exist?("#{Rails.root}/public/upload")
+    #写入文件
+    ##wb 表示通过二进制方式写，可以保证文件不损坏
+    File.open("#{Rails.root}/public/upload/#{@filename}", "wb") do |f|
+      f.write(file.read)
     end
+    return @filename
   end
 
   # PATCH/PUT /video_blogs/1
@@ -91,7 +98,6 @@ class VideoBlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_blog_params
-      #params.require(:video_blog).permit(:title, :tag, :response_count, :click_count, :accessment, :user_id, :file_transfer_id)
-      params.require(:video_blog).permit(:title, :tag, :user_id, :file_transfer_id)
+      params.require(:video_blog).permit(:title, :tag)
     end
 end
