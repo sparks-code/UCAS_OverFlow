@@ -10,6 +10,8 @@ class VideoBlogsController < ApplicationController
   # GET /video_blogs/1.json
   def show
     @video_blog = VideoBlog.find(params[:id])
+    @video_blog.click_count += 1
+    @video_blog.save
   end
 
   # GET /video_blogs/new
@@ -85,7 +87,7 @@ class VideoBlogsController < ApplicationController
   def destroy
     @video_blog.destroy
     respond_to do |format|
-      format.html { redirect_to video_blogs_url, notice: 'Video blog was successfully destroyed.' }
+      format.html { redirect_to video_blogs_url, notice: '删除成功！' }
       format.json { head :no_content }
     end
   end
