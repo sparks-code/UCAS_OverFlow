@@ -58,16 +58,27 @@ class User < ApplicationRecord
     end
 
     def translate_academy
-        # 根据机构转译
-        return nil
+        if AcademyOrganization.find_by(:code_number=>self.organization)
+            return AcademyOrganization.find_by(:code_number=>self.organization).academy_name
+        else
+            return self.organization
+        end
     end
 
     def translate_organization
-        return self.organization
+        if AcademyOrganization.find_by(:code_number=>self.organization)
+            return AcademyOrganization.find_by(:code_number=>self.organization).organization_name
+        else
+            return self.organization
+        end
     end
 
     def translate_project
-        return self.project
+        if Project.find_by(:code_number=>self.project)
+            return Project.find_by(:code_number=>self.project).project_name
+        else
+            return self.project
+        end 
     end
 
     # 计算用户的访问令牌, 存至数据库
