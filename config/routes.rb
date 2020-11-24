@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
   resources :resource_blogs
   resources :text_blogs
   resources :video_blogs
   resources :file_transfers
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  get '/login', to: 'sessions#new'
+  post  '/login', to: 'sessions#create'
 end
