@@ -10,6 +10,7 @@ class VideoBlogsController < ApplicationController
   # GET /video_blogs/1
   # GET /video_blogs/1.json
   def show
+    @video_blog = VideoBlog.find(params[:id])
   end
 
   # GET /video_blogs/new
@@ -25,16 +26,20 @@ class VideoBlogsController < ApplicationController
   # POST /video_blogs.json
   def create
     @video_blog = VideoBlog.new(video_blog_params)
-
-    respond_to do |format|
-      if @video_blog.save
-        format.html { redirect_to @video_blog, notice: 'Video blog was successfully created.' }
-        format.json { render :show, status: :created, location: @video_blog }
-      else
-        format.html { render :new }
-        format.json { render json: @video_blog.errors, status: :unprocessable_entity }
-      end
+    unless @user.save
+      render '/video_blogs/new'
+    else
+      redirect_to "/video_blogs/#{@user.id}"
     end
+    # respond_to do |format|
+    #   if @video_blog.save
+    #     format.html { redirect_to @video_blog, notice: 'Video blog was successfully created.' }
+    #     format.json { render :show, status: :created, location: @video_blog }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @video_blog.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /video_blogs/1

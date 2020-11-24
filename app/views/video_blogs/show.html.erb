@@ -1,39 +1,38 @@
-<p id="notice"><%= notice %></p>
+<html>
 
-<p>
-  <strong>Title:</strong>
-  <%= @video_blog.title %>
-</p>
+<head>
+  <title><%= @video_blog.title %></title>
+</head>
 
-<p>
-  <strong>Tag:</strong>
-  <%= @video_blog.tag %>
-</p>
+<body>
 
-<p>
-  <strong>Response count:</strong>
-  <%= @video_blog.response_count %>
-</p>
+  <h3>视频信息</h3>
+  <HR>
+    <table border="0">
+      <tr>
+        <td>上传用户：</td>
+        <td><%= @video_blog.user.name %></td>
+      </tr>
+    
+      <tr>
+        <td>板块：</td>
+        <td><%= @video_blog.tag %></td>
+      </tr>
 
-<p>
-  <strong>Click count:</strong>
-  <%= @video_blog.click_count %>
-</p>
+      <tr>
+        <td>回复数：</td>
+        <td><%= @video_blog.response_count %></td>
+      </tr>
 
-<p>
-  <strong>Accessment:</strong>
-  <%= @video_blog.accessment %>
-</p>
+      <tr>
+        <td>点击数：</td>
+        <td><%=  @video_blog.click_count %></td>
+      </tr>
+    </table>
+</body>
 
-<p>
-  <strong>User:</strong>
-  <%= @video_blog.user %>
-</p>
+<%= link_to '编辑', edit_video_blog_path(@video_blog) %> |
+<%= link_to '返回', video_blogs_path %>
 
-<p>
-  <strong>File transfer:</strong>
-  <%= @video_blog.file_transfer %>
-</p>
+</html>
 
-<%= link_to 'Edit', edit_video_blog_path(@video_blog) %> |
-<%= link_to 'Back', video_blogs_path %>

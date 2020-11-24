@@ -1,5 +1,24 @@
 <h1>New Video Blog</h1>
-
 <%= render 'form', video_blog: @video_blog %>
-
 <%= link_to 'Back', video_blogs_path %>
+
+# <% provide(:title, '发布视频') %>
+# <h1>用户注册</h1>
+
+# <div class="row">
+#     <%= form_for @user do |f| %>
+#       <%= f.label :name, "姓名" %>
+#       <%= f.text_field :name %>
+#       <%= f.label :user_number, "学号" %>
+#       <%= f.text_field :user_number %>
+#       <%= f.label :email, "邮箱" %>
+#       <%= f.email_field :email %>
+#       <%= f.label :password, "密码"%>
+#       <%= f.password_field :password %>
+#       <%= f.label :password_confirmation, "验证密码" %>
+#       <%= f.password_field :password_confirmation %>
+#       <br><br>
+#       <%= f.submit "创建账户" %>
+#     <% end %>
+# </div>
+# <%= link_to 'Back', video_blogs_path %>
