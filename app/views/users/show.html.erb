@@ -5,7 +5,9 @@
 </head>
 
 <body>
-  <%= GravatarImage(@user) %>
+
+  <%= render "share/flash_error_message.html"%><br>
+  <%= gravatar_image(@user) %>
 
   <h3>基本信息：</h3>
   <HR>

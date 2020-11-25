@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember_user(user) : forget_user(user)
       redirect_back_by_default(user)
     else
-      flash.now[:danger] = "登录失败，用户名/密码错误！"
+      flash.now[:warning] = "登录失败，用户名/密码错误！"
       render :new
     end
   end

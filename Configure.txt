@@ -35,4 +35,8 @@ rails db:migrate
 # Users:db 添加remember_token
 rails generate migration add_rememer_digest_to_users password_digest:string  
 
+# 生成测试数据库
+rails db:seed
 
+# 重置数据库
+rails db:migrate:reset

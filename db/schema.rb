@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 2020_11_24_065008) do
     t.string "name"
     t.string "user_number"
     t.string "email"
-    t.string "password"
     t.string "sex"
     t.boolean "admin"
     t.datetime "created_at", null: false

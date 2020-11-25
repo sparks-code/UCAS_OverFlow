@@ -11,8 +11,8 @@ gem 'sqlite3'
 # 自己增加的包
 gem 'fake'
 gem 'faker'
-gem 'will_paginate', '3.1.5'
-gem 'bootstrap-will_paginate', '0.0.10'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

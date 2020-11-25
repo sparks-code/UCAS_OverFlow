@@ -4,7 +4,13 @@ class UsersController < ApplicationController
   before_action :ensure_logged_in, except: [:new, :create]  # 除了新建用户，任何操作都要求登录
 
   def index
-    @users = User.all
+    @users=nil
+    if current_user && current_user.admin?
+      @users = User.paginate(page: params[:page])
+    else
+      flash[:warning] = "非管理员无权限！为您自动重定向到个人详情页"
+      redirect_to current_user
+    end
   end
 
   def show
