@@ -44,12 +44,26 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+  def set_admin
+    user = User.find_by(id: params[:user_id].to_i)
+    if current_user != user && current_user.admin?
+      user.admin ? user.admin = false : user.admin = true
+      user.save
+    else
+      flash[:error] = "检查登录信息出错"
     end
+    redirect_to users_url
+  end
+
+  def destroy
+    user = User.find_by(id: params[:id].to_i)
+    if current_user != user && current_user.admin?
+        flash[:success] = "删除用户：{姓名：#{user.name}, 学号：#{user.user_number}, 邮箱:#{user.email}}成功"
+        user.destroy
+    else
+        flash[:error] = "不允许删除当前用户"
+    end
+    redirect_to users_url
   end
 
   private
@@ -57,7 +71,7 @@ class UsersController < ApplicationController
       unless logged_in?
         store_forwarding_url
           
-        flash[:danger] = "请先登录！"
+        flash[:warning] = "请先登录！"
         redirect_to login_url
       end
     end

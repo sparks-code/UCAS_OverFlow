@@ -1,6 +1,8 @@
 <% provide(:title, '用户列表') %>
 <h1>用户列表</h1>
 
+<%= render "share/flash_message.html"%><br>
+
 <%= will_paginate %>
 
 <ul class="users">
@@ -31,8 +33,8 @@
                 <td><%= user.translate_project %></td>
                 <td><%= user.translate_admin %> </td> 
                 <% if current_user.admin? && (current_user != user) %>
-                    <td><%= link_to user.admin ? "取消管理员权限" : "提升为管理员", user, method: :delete, data: { confirm: "是否确认删除?" } %></td>
-                    <td><%= link_to "删除", user, method: :delete, data: { confirm: "是否确认删除?" } %></td>
+                    <td><%= link_to(user.admin ? "取消管理员权限" : "提升为管理员",options = {:controller => "users", :action => "set_admin", :user_id=>user.id}, html_options={:method => "post",confirm: "提升为管理员将与您有同等权限，是否继续?"} )%></td>
+                    <td><%= link_to("删除", user, method: :delete, data: { confirm: "是否确认删除?" }) %></td>
                 <% else %>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>

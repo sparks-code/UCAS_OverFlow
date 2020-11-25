@@ -6,7 +6,7 @@
 
 <body>
 
-  <%= render "share/flash_error_message.html"%><br>
+  <%= render "share/flash_message.html"%><br>
   <%= gravatar_image(@user) %>
 
   <h3>基本信息：</h3>
@@ -67,10 +67,18 @@
       </tr>
 
     </table>
-</body>
 
-<%= link_to '编辑', edit_user_path(@user) %> |
-<%= link_to '回退', users_path %>
+    <%- if @user == current_user %>
+    <%= link_to '编辑', edit_user_path(@user) %> |
+    <% end -%>
+
+    <%- if current_user.admin %>
+      <%= link_to '查看所有用户', users_path %> |
+    <% end -%>
+
+    <%= link_to '回到首页', users_path %>
+
+</body>
 
 </html>
 
