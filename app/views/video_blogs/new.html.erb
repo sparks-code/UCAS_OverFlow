@@ -1,5 +1,20 @@
-<h1>New Video Blog</h1>
+<% provide(:title, '发布视频') %>
+<h1>发布视频</h1>
 
-<%= render 'form', video_blog: @video_blog %>
+<ul>
+<% @video_blog.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+<% end %>
+</ul>
 
+<%= form_for @video_blog do |f| %>
+    <%= f.label :title, "标题" %>
+    <%= f.text_field :title %>
+    <%= f.label :tag, "标签" %>
+    <%= f.text_field :tag %>
+    <%= f.label :file_path, "选择视频" %>
+    <%= f.file_field :file_path %>
+    <br><br>
+    <%= f.submit "发布" %>
+<% end %>
 <%= link_to 'Back', video_blogs_path %>

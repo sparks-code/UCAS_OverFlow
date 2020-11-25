@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  file_path: MyString
-  introduction: MyString
-
-two:
-  file_path: MyString
-  introduction: MyString
