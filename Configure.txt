@@ -40,3 +40,11 @@ rails db:seed
 
 # 重置数据库
 rails db:migrate:reset
+
+#修改合并videoBlog和FileTransfer
+rails destroy FileTransfer
+
+rails generate migration add_file_path_to_video_blogs file_path:string
+
+rails generate migration remove_file_transfer_id_from_video_blogs file_transfer_id:integer
+
