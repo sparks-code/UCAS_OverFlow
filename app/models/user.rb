@@ -13,6 +13,8 @@ class User < ApplicationRecord
     validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}, uniqueness: { case_sensitive: false }
     validates :sex, presence: true, format: {with: /\A(男|女){1}\z/, message: "sex should be sure"}, allow_nil: true
 
+    attr_accessor :remember_token
+
     # 计算年级
     def grade
         return self.user_number[0..3]
@@ -33,7 +35,7 @@ class User < ApplicationRecord
         return self.user_number[10..11]
     end
 
-    def TranslateAdmin
+    def translate_admin
         if self.admin?
             return "是"
         else
@@ -41,11 +43,11 @@ class User < ApplicationRecord
         end
     end
 
-    def TranslateGrade
+    def translate_grade
         return self.grade+"级"
     end
 
-    def TranslateType
+    def translate_type
         if self.type=="1"
             return "博士"
         elsif self.type=="2"
@@ -55,16 +57,66 @@ class User < ApplicationRecord
         end
     end
 
-    def TranslateAcademy
-        # 根据机构转译
-        return nil
+    def translate_academy
+        if AcademyOrganization.find_by(:code_number=>self.organization)
+            return AcademyOrganization.find_by(:code_number=>self.organization).academy_name
+        else
+            return self.organization
+        end
     end
 
-    def TranslateOrganization
-        return self.organization
+    def translate_organization
+        if AcademyOrganization.find_by(:code_number=>self.organization)
+            return AcademyOrganization.find_by(:code_number=>self.organization).organization_name
+        else
+            return self.organization
+        end
     end
 
-    def TranslateProject
-        return self.project
+    def translate_project
+        if Project.find_by(:code_number=>self.project)
+            return Project.find_by(:code_number=>self.project).project_name
+        else
+            return self.project
+        end 
+    end
+
+    # 计算用户的访问令牌, 存至数据库
+    def remember_user
+        self.remember_token = User.create_new_token
+        self.update_attribute(:remember_digest, User.calculate_hash(remember_token))
+    end
+
+    # 清空用户访问令牌
+    def forget_user
+        self.update_attribute(:remember_digest,nil)
+    end
+
+    # 核对用户提供的访问令牌是否有效
+    def authenticated?(remember_token)
+        # 判断数据库是否有hash值
+        if remember_token.nil? || remember_token.empty?
+            return false
+        end
+
+        # 核对 hash值是否正确
+        if BCrypt::Password.new(self.remember_digest).is_password?(remember_token)
+            return true
+        else
+            return false
+        end
+    end
+
+    class << self
+        # 返回提供参数 string 的散列摘要值
+        def calculate_hash(string)
+            cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+            BCrypt::Password.create(string, cost: cost)
+        end
+
+        # 返回一个22位长的随机字符串
+        def create_new_token
+            SecureRandom.urlsafe_base64
+        end
     end
 end

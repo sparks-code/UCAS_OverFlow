@@ -1,6 +1,13 @@
-<h1>Editing User</h1>
+<% provide(:title, '修改信息') %>
+<% provide(:submit_button_text, "提交修改") %>
+<h3>修改信息</h3>
 
+<%= render "share/user_write_error_messages.html"%>
 <%= render 'form', user: @user %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<br>
+
+<%= link_to '个人详情', @user %>
+修改头像？<a href="https://cn.gravatar.com/" target="_blank">将新头像与邮箱绑定</a>
+
+

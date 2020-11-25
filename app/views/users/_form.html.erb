@@ -1,47 +1,17 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_number %>
-    <%= form.text_field :user_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.text_field :password %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sex %>
-    <%= form.text_field :sex %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admin %>
-    <%= form.check_box :admin %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= form_for @user do |f| %>
+    <%= f.label :name, "姓名：" %>
+    <%= f.text_field :name, :value => @user.name%>
+    <%= f.label :user_number, "学号：" %>
+    <%= f.text_field :user_number, :value => @user.user_number %>
+    <%= f.label :email, "邮箱：" %>
+    <%= f.email_field :email, :value => @user.email %>
+    <%= f.label :password, "密码："%>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation, "验证密码：" %>
+    <%= f.password_field :password_confirmation %>
+    <br>
+    <%= f.radio_button :sex, "男", :checked => true %><span>男</span>
+    <%= f.radio_button :sex, "女" %><span>女</span>
+    <br><br>
+    <%= f.submit yield(:submit_button_text) %>
 <% end %>
