@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
     has_many :video_blogs
     has_many :file_blogs
+    has_many :text_blogs
     has_many :resource_blog
 
     validates :password, confirmation: true, presence: true, allow_nil: true
