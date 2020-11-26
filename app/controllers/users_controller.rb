@@ -30,8 +30,7 @@ class UsersController < ApplicationController
     unless @user.save
       render '/users/new'
     else
-      login_in(@user)
-      redirect_to login_url
+      redirect_to activate_url(:activate_id=>@user.id)
     end
   end
 
@@ -70,12 +69,12 @@ class UsersController < ApplicationController
     def ensure_logged_in
       unless logged_in?
         store_forwarding_url
-          
         flash[:warning] = "请先登录！"
         redirect_to login_url
       end
     end
 
+    # 参数过滤器
     def user_params
       params.require(:user).permit(:name, :user_number, :email, :password, :password_confirmation, :sex)    # 管理员信息不在此处设置
     end

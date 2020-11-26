@@ -15,6 +15,10 @@ class User < ApplicationRecord
 
     attr_accessor :remember_token
 
+      # 激活邮件回调
+    before_create :create_activation_token
+    before_save :downcase_email                 # 邮箱存储小写
+
     # 计算年级
     def grade
         return self.user_number[0..3]
@@ -93,18 +97,22 @@ class User < ApplicationRecord
     end
 
     # 核对用户提供的访问令牌是否有效
-    def authenticated?(remember_token)
-        # 判断数据库是否有hash值
-        if remember_token.nil? || remember_token.empty?
-            return false
+    def authenticated?(attribute, token)
+        database_key_name = self.send("#{attribute}_digest")
+        if database_key_name.nil?
+          return false 
         end
+        BCrypt::Password.new(database_key_name).is_password?(token)
+    end
 
-        # 核对 hash值是否正确
-        if BCrypt::Password.new(self.remember_digest).is_password?(remember_token)
-            return true
-        else
-            return false
-        end
+    def create_activation_token
+        self.activation_token = User.create_new_token
+        self.activation_digest = User.calculate_hash(self.activation_token)
+    end
+
+    # 邮箱字母转化为小写
+    def downcase_email
+        self.email = self.email.downcase
     end
 
     class << self

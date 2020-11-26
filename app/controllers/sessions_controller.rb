@@ -11,7 +11,9 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:account]) || User.find_by_user_number(params[:session][:account])
 
     if user && user.authenticate(params[:session][:password])
-      login_in(user)
+      if !login_in(user)
+        return
+      end
       params[:session][:remember_me] == '1' ? remember_user(user) : forget_user(user)
       redirect_back_by_default(user)
     else
