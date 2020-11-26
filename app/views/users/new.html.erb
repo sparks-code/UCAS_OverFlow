@@ -4,6 +4,7 @@
 <h3>用户注册</h3>
 
 <%= render "share/user_write_error_messages.html"%>
-<%= render "form" %>
+<%= render "share/flash_message.html"%><br>
+<%= render partial: 'form' %>
 <br>
 <%= link_to '返回首页', root_url %>

@@ -1,0 +1,5 @@
+<h3><%= @user.name %>，您好！</h3><br>
+
+<p>我们检测到您正在尝试修改您的注册邮箱为(<%= @user.new_email %>)，仅确认是您本人所为，请点击<%= link_to "激活", activate_new_account_url(:token=>@user.activation_token, :email => @user.email) %>按钮</p><br>
+
+<p>UCAS OverFlow是中国科学院大学的官方BBS网站，汇聚了视频、文件、学习、生活相关多种内容，感谢您的支持</p>

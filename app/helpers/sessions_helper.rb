@@ -8,7 +8,9 @@ module SessionsHelper
 
     # 忘记用户, 删除cookie
     def forget_user(user)
-        user.forget_user
+        if user
+            user.forget_user
+        end
         cookies.delete(:user_id)
         cookies.delete(:remember_token)
     end
