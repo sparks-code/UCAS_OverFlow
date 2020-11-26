@@ -12,7 +12,8 @@
     email = "test_#{n+1}@eamil.com"
     password = "password"
     sex = rand(1..2)==1 ? "男" : "女"
-    User.create!(name: name ,user_number: user_number, email: email,sex: sex , password: password, password_confirmation: password)
+    activated=true
+    User.create!(name: name ,user_number: user_number, email: email,sex: sex , password: password, password_confirmation: password,activated: true)
 end
 
 99.times do |n|

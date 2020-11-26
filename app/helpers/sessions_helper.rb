@@ -29,7 +29,7 @@ module SessionsHelper
         unless cookies[:user_id].nil?
             user_c = User.find_by(:id=>cookies.signed[:user_id].to_i)
             unless user_c.nil?
-                if user_c.authenticated?(cookies[:remember_token])
+                if user_c.authenticated?(:remember,cookies[:remember_token])
                     @current_user = user_c
                     login_in(user_c)
                     return @current_user
@@ -43,7 +43,12 @@ module SessionsHelper
 
     # 对指定用户做登录操作，建立session
     def login_in(user)
+        if !user.activated
+            redirect_to activate_url(:activate_id=>user.id)
+            return false
+        end
         session[:user_id] = user.id
+        return true
     end
 
     # 对当前用户做登出操作，删除session
