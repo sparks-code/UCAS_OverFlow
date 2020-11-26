@@ -1,5 +1,20 @@
-<h1>New Resource Blog</h1>
+<% provide(:title, '发布资源') %>
+<h1>发布资源</h1>
 
-<%= render 'form', resource_blog: @resource_blog %>
+<ul>
+<% @resource_blog.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+<% end %>
+</ul>
 
+<%= form_for @resource_blog do |f| %>
+    <%= f.label :title, "标题" %>
+    <%= f.text_field :title %>
+    <%= f.label :tag, "标签" %>
+    <%= f.text_field :tag %>
+    <%= f.label :file_path, "选择资源" %>
+    <%= f.file_field :file_path %>
+    <br><br>
+    <%= f.submit "发布" %>
+<% end %>
 <%= link_to 'Back', resource_blogs_path %>

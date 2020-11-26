@@ -1,6 +1,13 @@
-<h1>Editing Resource Blog</h1>
+<% provide(:title, '修改资源') %>
+<h1>修改资源信息</h1>
 
-<%= render 'form', resource_blog: @resource_blog %>
 
-<%= link_to 'Show', @resource_blog %> |
-<%= link_to 'Back', resource_blogs_path %>
+<%= form_for @resource_blog do |f| %>
+    <%= f.label :title, "标题" %>
+    <%= f.text_field :title %>
+    <%= f.label :tag, "标签" %>
+    <%= f.text_field :tag %>
+    <br><br>
+    <%= f.submit "保存" %>
+<% end %>
+<%= link_to '返回', resource_blog_path(@resource_blog) %>

@@ -13,6 +13,8 @@ module UCASOverflow
     # Enable the asset pipeline, add video path
     config.assets.enabled = true
     config.assets.paths << "#{Rails.root}/app/assets/videos"
+    #add resource path
+    config.assets.paths << "#{Rails.root}/app/assets/resources"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

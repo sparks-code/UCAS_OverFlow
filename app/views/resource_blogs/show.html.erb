@@ -1,39 +1,42 @@
-<p id="notice"><%= notice %></p>
+<html>
 
-<p>
-  <strong>Title:</strong>
-  <%= @resource_blog.title %>
-</p>
+<head>
+  <title><%= @resource_blog.title %></title>
+</head>
 
-<p>
-  <strong>Tag:</strong>
-  <%= @resource_blog.tag %>
-</p>
+<body>
+   <%= link_to "下载资源", :action => "down_file", :filename => @resource_blog.filename %>
+  <h3>资源信息</h3>
+  <HR>
+    <table border="0">
+      <tr>
+        <td>资源名称</td>
+        <td><%= @resource_blog.title %></td>
+      </tr>
+      <tr>
+        <td>上传用户：</td>
+        <td><%= @resource_blog.user.name %></td>
+      </tr>
+    
+      <tr>
+        <td>板块：</td>
+        <td><%= @resource_blog.tag %></td>
+      </tr>
 
-<p>
-  <strong>Response count:</strong>
-  <%= @resource_blog.response_count %>
-</p>
+      <tr>
+        <td>回复数：</td>
+        <td><%= @resource_blog.response_count %></td>
+      </tr>
 
-<p>
-  <strong>Click count:</strong>
-  <%= @resource_blog.click_count %>
-</p>
+      <tr>
+        <td>点击数：</td>
+        <td><%=  @resource_blog.click_count %></td>
+      </tr>
+    </table>
+</body>
 
-<p>
-  <strong>Accessment:</strong>
-  <%= @resource_blog.accessment %>
-</p>
+<%= link_to '编辑', edit_resource_blog_path(@resource_blog) %> |
+<%= link_to '返回', resource_blogs_path %>
 
-<p>
-  <strong>User:</strong>
-  <%= @resource_blog.user %>
-</p>
+</html>
 
-<p>
-  <strong>File transfer:</strong>
-  <%= @resource_blog.file_transfer %>
-</p>
-
-<%= link_to 'Edit', edit_resource_blog_path(@resource_blog) %> |
-<%= link_to 'Back', resource_blogs_path %>
