@@ -2,6 +2,7 @@ Rails.application.routes.default_url_options[:host] = "127.0.0.1:3000"
 
 Rails.application.routes.draw do
   get 'account_activations/edit'
+  get 'static_pages/home'
   get 'sessions/new'
   resources :resource_blogs
   resources :text_blogs
@@ -19,5 +20,7 @@ Rails.application.routes.draw do
   post '/privilege', to: 'users#set_admin'
 
   root 'users#hello'
+  # 主页
+  get '/home', to: 'static_pages#home'
 end
 
