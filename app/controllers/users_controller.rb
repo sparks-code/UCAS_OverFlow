@@ -14,14 +14,26 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id].to_i)
+    if current_user.admin || current_user.id == params[:id].to_i
+      @user = User.find(params[:id].to_i)
+    else
+      @user = current_user
+    end
+
+    if !@user.is_effective?
+
+      # 强制非法访问十，返回空白信息
+      @user = current_user
+    end
   end
 
   def new
+    @is_new_user=true
     @user = User.new
   end
 
   def edit
+    @is_new_user=false
     @user = User.find_by(id: params[:id].to_i)
   end
 
@@ -36,8 +48,23 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
+    # 判断待更新邮箱是否存在
+    if User.find_by(:email=>params[:user][:new_email])
+      flash.now[:error]="新邮箱已经被注册"
+      render 'edit'
+      return
+    end
+
     if @user.update_attributes(user_params)
-      redirect_to @user
+
+      if @user.new_email && @user.new_email !=@user.email
+        redirect_to activate_new_url(:activate_id=>@user.id)
+      else
+        @user.new_email=nil
+        @user.save
+        redirect_to root_url
+      end
     else
       render 'edit'
     end
@@ -58,7 +85,10 @@ class UsersController < ApplicationController
     user = User.find_by(id: params[:id].to_i)
     if current_user != user && current_user.admin?
         flash[:success] = "删除用户：{姓名：#{user.name}, 学号：#{user.user_number}, 邮箱:#{user.email}}成功"
-        user.destroy
+
+        #  实际上只是转化为未激活状态，并不删除信息
+        user.activated =false
+        user.save
     else
         flash[:error] = "不允许删除当前用户"
     end
@@ -76,6 +106,6 @@ class UsersController < ApplicationController
 
     # 参数过滤器
     def user_params
-      params.require(:user).permit(:name, :user_number, :email, :password, :password_confirmation, :sex)    # 管理员信息不在此处设置
+      params.require(:user).permit(:name, :user_number, :email, :new_email, :password, :password_confirmation, :sex)    # 管理员信息不在此处设置
     end
 end

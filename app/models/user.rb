@@ -11,9 +11,10 @@ class User < ApplicationRecord
     validates :name, presence: true, length: { minimum: 2, maximum: 50 }
     validates :user_number, uniqueness: true, presence: true, format:{with: /\A(\d|x){15}\z/i, message: "student id (:user number) is not Invalid"}
     validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}, uniqueness: { case_sensitive: false }
+    validates :new_email, presence: true, allow_nil: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}, uniqueness: { case_sensitive: false }
     validates :sex, presence: true, format: {with: /\A(男|女){1}\z/, message: "sex should be sure"}, allow_nil: true
 
-    attr_accessor :remember_token
+    attr_accessor :remember_token, :activation_token
 
       # 激活邮件回调
     before_create :create_activation_token
@@ -113,6 +114,14 @@ class User < ApplicationRecord
     # 邮箱字母转化为小写
     def downcase_email
         self.email = self.email.downcase
+    end
+
+    def is_effective?
+        if self.activated
+            return true
+        else
+            return false
+        end
     end
 
     class << self

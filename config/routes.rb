@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   resources :text_blogs
   resources :video_blogs
   resources :users
-  resources :account_activations, only: [:edit]
   
-  get '/inactivate', to: 'account_activations#inactivate_page'
   get '/activate', to: 'account_activations#activate_page'
+  get '/activate_account', to: 'account_activations#activate_account'
+
+  get '/activate_new', to: 'account_activations#activate_new_page'
+  get '/activate_new_account', to: 'account_activations#activate_new_account'
 
   get '/login', to: 'sessions#new'
   post  '/login', to: 'sessions#create'
