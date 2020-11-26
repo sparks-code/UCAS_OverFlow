@@ -1,5 +1,6 @@
 class VideoBlogsController < ApplicationController
   before_action :set_video_blog, only: [:show, :edit, :update, :destroy]
+    include SessionsHelper
   # GET /video_blogs
   # GET /video_blogs.json
   def index
@@ -26,7 +27,7 @@ class VideoBlogsController < ApplicationController
   # POST /video_blogs
   # POST /video_blogs.json
   def create
-    @video_blog = User.find(1).video_blogs.new(video_blog_params)
+    @video_blog = current_user.video_blogs.new(video_blog_params)
     @video_blog.response_count = 0
     @video_blog.click_count = 0
     @video_blog.accessment = 0
