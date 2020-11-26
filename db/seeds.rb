@@ -13,14 +13,17 @@
     password = "password"
     sex = rand(1..2)==1 ? "男" : "女"
     activated=true
-    User.create!(name: name ,user_number: user_number, email: email,sex: sex , password: password, password_confirmation: password,activated: true)
+    User.create!(name: name ,user_number: user_number, email: email,sex: sex , password: password, password_confirmation: password,activated: activated)
 end
 
 99.times do |n|
     code_number_project = "#{"%02d"%(n)}"
+    project_name= "#{n+152}专业"
+    Project.create!(code_number: code_number_project, project_name: project_name)
+
     code_number_academy_organization = "#{50100+n}"
 
-    project_name = "#{n%10 + 342}研究所"
+    organization_name = "#{n%10 + 342}研究所"
     academy_name = "#{n+675}学院"
-    Project.create!(code_number: code_number_project, project_name: project_name)
+    AcademyOrganization.create!(code_number: code_number_academy_organization, academy_name: academy_name, organization_name: organization_name)
 end

@@ -40,6 +40,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     unless @user.save
+      @is_new_user=true
       render '/users/new'
     else
       redirect_to activate_url(:activate_id=>@user.id)
@@ -52,6 +53,7 @@ class UsersController < ApplicationController
     # 判断待更新邮箱是否存在
     if User.find_by(:email=>params[:user][:new_email])
       flash.now[:error]="新邮箱已经被注册"
+      @is_new_user=false
       render 'edit'
       return
     end

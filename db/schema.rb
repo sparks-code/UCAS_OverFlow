@@ -20,13 +20,6 @@ ActiveRecord::Schema.define(version: 2020_11_26_160344) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "file_transfers", force: :cascade do |t|
-    t.string "file_path"
-    t.string "introduction"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "projects", force: :cascade do |t|
     t.string "code_number"
     t.string "project_name"
@@ -88,7 +81,6 @@ ActiveRecord::Schema.define(version: 2020_11_26_160344) do
     t.string "name"
     t.string "user_number"
     t.string "email"
-    t.string "password"
     t.string "sex"
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
