@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     if !@user.is_effective?
 
-      # 强制非法访问十，返回空白信息
+      # 强制非法访问时，返回空白信息
       @user = current_user
     end
   end
