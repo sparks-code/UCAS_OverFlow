@@ -57,4 +57,15 @@ class AccountActivationsController < ApplicationController
     return
   end
 
+  def activate_login_page
+    @user = User.find_by(:id => params[:login_id])
+
+    if @user.email
+      UserMailer.email_login_activation(@user).deliver_now
+    else
+      flash[:error] = "查找邮箱时发生错误，您可以再次尝试"
+      redirect_to email_login_url
+    end
+  end
+
 end

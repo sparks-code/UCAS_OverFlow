@@ -77,3 +77,7 @@ ucas_overflow@163.com
 rails generate migration add_new_email_to_users new_email:string
 
 rails generate migration remove_activation_token_from_users activation_token:string 
+
+rails generate migration add_login_token_to_users login_token:string  
+rails generate migration remove_login_token_from_users login_token:string 
+rails generate migration add_login_digest_to_users login_digest:string  

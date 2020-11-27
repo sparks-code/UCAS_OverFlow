@@ -12,10 +12,12 @@
     <%= f.password_field :password %>
 
     <%= f.label :remember_me do %>
-        <%= f.check_box :remember_me %><span>下次自动登录</span>
+        <%= f.check_box :remember_me %><span>下次自动登录         
     <% end %>
 
     <%= f.submit "登录"%>
 <% end %>
 
-<p>新用户？ <%= link_to "立即注册！", new_user_path %></p>
+新用户？<%= link_to "立即注册！", new_user_path %>
+<%= link_to "忘记密码？", email_login_path %>
+

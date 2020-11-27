@@ -1,0 +1,5 @@
+<%= @user.name %>，您好！
+
+我们检测到您正在尝试通过邮箱登录UCAS Overflow网站，在您点击<%= link_to "登录", validates_email_login_url(:token=>@user.login_token, :login_id => @user.id) %>按钮后，将跳转到您的个人账户，同时此邮件将失效
+
+UCAS OverFlow是中国科学院大学的官方BBS网站，汇聚了视频、文件、学习、生活相关多种内容，感谢您的支持

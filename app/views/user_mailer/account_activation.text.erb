@@ -1,5 +1,5 @@
 <%= @user.name %>您好！欢迎来到UCAS OverFlow
 
-您已经通过UCAS OverFlow官方网站注册账户，但尚未完成激活，可通过点击<%= activate_account_url(:token=>@user.activation_token, :email => @user.email) %>，快速激活您的账户
+您已经通过UCAS OverFlow官方网站注册账户，但尚未完成激活，可通过点击<%= link_to "激活", activate_account_url(:token=>@user.activation_token, :email => @user.email) %>，快速激活您的账户
 
 UCAS OverFlow是中国科学院大学的官方BBS网站，汇聚了视频、文件、学习、生活相关多种内容，感谢您的支持

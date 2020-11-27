@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'account_activations/edit'
   get 'static_pages/home'
   get 'sessions/new'
+  
   resources :resource_blogs
   resources :text_blogs
   resources :video_blogs
@@ -15,8 +16,13 @@ Rails.application.routes.draw do
   get '/activate_new', to: 'account_activations#activate_new_page'
   get '/activate_new_account', to: 'account_activations#activate_new_account'
 
+  get '/activate_login', to: 'account_activations#activate_login_page'
+
   get '/login', to: 'sessions#new'
   post  '/login', to: 'sessions#create'
+  get '/email_login', to: 'sessions#email_login'
+  post  '/deal_email_login', to: 'sessions#deal_email_login'
+  get  '/validates_email_login', to: 'sessions#validates_email_login'
   post '/privilege', to: 'users#set_admin'
 
   root 'users#hello'

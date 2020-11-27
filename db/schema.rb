@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_160344) do
+ActiveRecord::Schema.define(version: 2020_11_27_073846) do
 
   create_table "academy_organizations", force: :cascade do |t|
     t.string "code_number"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2020_11_26_160344) do
     t.boolean "activated", default: false
     t.datetime "activated_at"
     t.string "new_email"
+    t.string "login_digest"
   end
 
   create_table "video_blogs", force: :cascade do |t|

@@ -39,11 +39,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    debugger
     unless @user.save
+      flash[:error]
       @is_new_user=true
       render '/users/new'
     else
-      redirect_to activate_url(:activate_id=>@user.id)
+      redirect_to activate_url(:activate_id=>user.id)
     end
   end
 
@@ -88,7 +90,9 @@ class UsersController < ApplicationController
     if current_user != user && current_user.admin?
         flash[:success] = "删除用户：{姓名：#{user.name}, 学号：#{user.user_number}, 邮箱:#{user.email}}成功"
 
-        #  实际上只是转化为未激活状态，并不删除信息
+        #  实际上只是转化为未激活状态，并删除邮箱和学号信息
+        user.user_number=nil
+        user.email=nil
         user.activated =false
         user.save
     else

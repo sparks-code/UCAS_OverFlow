@@ -10,14 +10,14 @@ class User < ApplicationRecord
     validates :password, confirmation: true, presence: true, allow_nil: true
  
     validates :name, presence: true, length: { minimum: 2, maximum: 50 }
-    validates :user_number, uniqueness: true, presence: true, format:{with: /\A(\d|x){15}\z/i, message: "student id (:user number) is not Invalid"}
-    validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}, uniqueness: { case_sensitive: false }
+    validates :user_number, allow_nil: true , uniqueness: true, presence: true, format:{with: /\A(\d|x){15}\z/i, message: "student id (:user number) is not Invalid"}
+    validates :email, allow_nil: true, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}, uniqueness: { case_sensitive: false }
     validates :new_email, presence: true, allow_nil: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}, uniqueness: { case_sensitive: false }
     validates :sex, presence: true, format: {with: /\A(男|女){1}\z/, message: "sex should be sure"}, allow_nil: true
 
-    attr_accessor :remember_token, :activation_token
+    attr_accessor :remember_token, :activation_token, :login_token
 
-      # 激活邮件回调
+    # 激活邮件回调
     before_create :create_activation_token
     before_save :downcase_email                 # 邮箱存储小写
 
@@ -112,9 +112,32 @@ class User < ApplicationRecord
         self.activation_digest = User.calculate_hash(self.activation_token)
     end
 
+    # 邮箱验证登录
+    def create_login_token
+        self.login_token = User.create_new_token
+        self.login_digest = User.calculate_hash(self.login_token)
+        self.save
+    end
+
+    def disable_login_token
+        self.login_token = nil
+        self.login_digest = nil
+        self.save
+    end
+
+    def login_token_enable?
+        if self.login_token && self.login_digest && self.authenticated?(:login, self.login_token)
+            return true
+        else
+            return false
+        end
+    end
+
     # 邮箱字母转化为小写
     def downcase_email
-        self.email = self.email.downcase
+        if self.email
+            self.email = self.email.downcase
+        end
     end
 
     def is_effective?
