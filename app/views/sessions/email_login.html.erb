@@ -1,8 +1,8 @@
 <% provide(:title, "用户登录") %>
 
-<%= render "share/flash_message.html"%>
-
 <h1>邮箱验证登录</h1>
+
+<%= render "share/flash_message.html"%>
 
 <%= form_for(:session, url: deal_email_login_path) do |f| %>
     <%= f.label :account, "学号/邮箱" %>

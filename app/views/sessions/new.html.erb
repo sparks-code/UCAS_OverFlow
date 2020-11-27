@@ -1,7 +1,8 @@
 <% provide(:title, "用户登录") %>
 
-<%= render "share/flash_message.html"%>
+<h1>登录</h1>
 
+<<<<<<< HEAD
 <div class="row">
     <div class="col-sm-offset-4 col-sm-4">
         <div class="panel panel-success">
@@ -44,4 +45,24 @@
 </div>
 
             
+=======
+<%= render "share/flash_message.html"%>
+
+<%= form_for(:session, url: login_path) do |f| %>
+    <%= f.label :account, "学号/邮箱" %>
+    <%= f.text_field :account%>
+
+    <%= f.label :password, "密码" %>
+    <%= f.password_field :password %>
+
+    <%= f.label :remember_me do %>
+        <%= f.check_box :remember_me %><span>下次自动登录         
+    <% end %>
+
+    <%= f.submit "登录"%>
+<% end %>
+
+新用户？<%= link_to "立即注册！", new_user_path %>
+<%= link_to "忘记密码？", email_login_path %>
+>>>>>>> parent of 4795571... css for messages
 
