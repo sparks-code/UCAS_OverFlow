@@ -12,7 +12,7 @@ class User < ApplicationRecord
     validates :name, presence: true, length: { minimum: 2, maximum: 50 }
     validates :user_number, allow_nil: true , uniqueness: true, presence: true, format:{with: /\A(\d|x){15}\z/i, message: "student id (:user number) is not Invalid"}
     validates :email, allow_nil: true, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}, uniqueness: { case_sensitive: false }
-    validates :new_email, presence: true, allow_nil: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}, uniqueness: { case_sensitive: false }
+    validates :new_email, allow_nil: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}
     validates :sex, presence: true, format: {with: /\A(男|女){1}\z/, message: "sex should be sure"}, allow_nil: true
 
     attr_accessor :remember_token, :activation_token, :login_token
