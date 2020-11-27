@@ -62,4 +62,55 @@ rails generate model Project code_number:string project_name:string
 
 #迁移
 rails db:migrate
+
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+# Users:db 添加remember_token
+rails generate migration add_rememer_digest_to_users password_digest:string  
+
+# 新建Session控制器
+rails generate controller Sessions new
+
+# 生成测试数据库
+rails db:seed
+
+# 重置数据库
+rails db:migrate:reset
+
+#修改合并videoBlog和FileTransfer
+rails destroy FileTransfer
+
+rails generate migration add_file_path_to_video_blogs file_path:string
+
+rails generate migration remove_file_transfer_id_from_video_blogs file_transfer_id:integer
+
+# 邮箱激活
+rails generate mailer UserMailer account_activation
+
+# 新建AccountActivations控制器
+rails generate controller AccountActivations edit
+
+# 新建
+rails generate migration add_activation_token_to_users activation_token:string  
+
+rails generate migration add_activation_digest_to_users activation_digest:string  
+
+rails generate migration add_activated_to_users activated:boolean
+
+rails generate migration add_activated_at_to_users activated_at:datetime
+
+# 邮箱配置开发环境
+\config\environments\development.rb
+
+邮箱:
+ucas_overflow@163.com
+授权码：HENHZASQIBQZWXJI
+
+# 加入新邮箱
+rails generate migration add_new_email_to_users new_email:string
+
+rails generate migration remove_activation_token_from_users activation_token:string 
+
+rails generate migration add_login_token_to_users login_token:string  
+rails generate migration remove_login_token_from_users login_token:string 
+rails generate migration add_login_digest_to_users login_digest:string  
 ```
