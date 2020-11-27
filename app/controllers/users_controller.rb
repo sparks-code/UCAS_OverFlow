@@ -39,7 +39,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    debugger
     unless @user.save
       flash[:error]
       @is_new_user=true
