@@ -46,13 +46,21 @@ class AccountActivationsController < ApplicationController
       user.email=user.new_email
       user.new_email=nil
       if user.save
+        old_users = User.where(:new_email=>user.email)
+        if old_users
+          old_users.each do |old_user|
+            old_user.new_email=nil
+            old_user.save
+          end
+        end
+
         login_out
         redirect_to login_url
         return
       end    
     end
 
-    flash[:error]="更新邮箱出错"
+    flash[:error]="更新邮箱出错,可能在此期间邮箱被您再次注册为新用户"
     redirect_to user
     return
   end
