@@ -1,4 +1,23 @@
-  <!-- 显示错误信息 -->
-  <% flash.each do |key, value| %>
-    <%= key %>：<%= value %>
-  <% end %>
+<!-- 显示错误信息 -->
+<% if !flash.empty? %>
+  <div id="flash_alert" class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <ul>
+        <% flash.each do |key, value| %>
+        <li>
+          <strong><%= key %></strong>：<%= value %>
+        </li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
+
+<script>
+  $(function()
+  {
+      $(".close").click(function()
+      {
+          $("#flash_alert").alert();
+      });
+  });
+</script>

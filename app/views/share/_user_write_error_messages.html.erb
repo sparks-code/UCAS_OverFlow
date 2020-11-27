@@ -1,9 +1,22 @@
 <%- if @user.errors %>
     <%-  if @user.errors.full_messages.present? %>
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-        <% end %>
-        </ul>
+        <div id="flash_alert" class="alert alert-warning">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
     <% end -%>
 <% end -%>
+
+<script>
+    $(function()
+    {
+        $(".close").click(function()
+        {
+            $("#flash_alert").alert();
+        });
+    });
+</script>

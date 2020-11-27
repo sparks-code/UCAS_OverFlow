@@ -1,10 +1,10 @@
 <% provide(:title, '用户注册') %>
 <% provide(:submit_button_text, "创建用户") %>
 
-<h3>用户注册</h3>
-
 <%= render "share/user_write_error_messages.html"%>
-<%= render "share/flash_message.html"%><br>
+<%= render "share/flash_message.html"%>
+
+<h3>用户注册</h3>
 <%= render partial: 'form' %>
 <br>
 <%= link_to '返回首页', root_url %>
