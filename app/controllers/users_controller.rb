@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       @is_new_user=true
       render '/users/new'
     else
-      redirect_to activate_url(:activate_id=>user.id)
+      redirect_to activate_url(:activate_id=>@user.id)
     end
   end
 
