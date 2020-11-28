@@ -20,6 +20,19 @@
  @import 'bootstrap';
  @import 'bootstrap/theme';
 
+// 默认超链接获取焦点时色彩有问题，这里重写一下
+
+a:hover,
+a:focus {
+  color: #50ab9bcc;
+}
+
+a:hover {
+  background-color: #00000000;
+}
+
+
+
 .my_row {
   background-color: #95c4f94d;
   margin: 0px 0px 0px 0px;

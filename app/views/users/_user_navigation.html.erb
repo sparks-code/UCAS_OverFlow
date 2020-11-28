@@ -1,0 +1,17 @@
+<ul class="nav nav-pills nav-stacked col-sm-1">
+	<li class="<%= "active" if @activate_type && @activate_type==1 %>" ><a href="#">个人信息</a></li>
+    
+    <li class="<%= "active" if @activate_type && @activate_type==2 %>" ><a href="#">修改个人信息</a></li>
+    
+	<li class="<%= "active" if @activate_type && @activate_type==3 %>" ><a href="#">我的视频贴</a></li>
+
+    <li class="<%= "active" if @activate_type && @activate_type==4 %>" ><a href="#">我的文本贴</a></li>
+
+    <li class="<%= "active" if @activate_type && @activate_type==5 %>" ><a href="#">我的资源贴</a></li>
+    
+    <% if current_user.admin %>
+        <li class="<%= "active" if @activate_type && @activate_type==6 %>" ><a href="#">显示所有用户</a></li>
+    <% end %>
+
+    <li class="<%= "active" if @activate_type && @activate_type==0 %>" ><a href= <%= root_url %> >回到首页</a></li>
+</ul>

@@ -6,9 +6,10 @@ class UsersController < ApplicationController
   after_action :set_background_disable, except: [:new, :edit, :create, :update]
 
   def index
+    @activate_type=6
     @users=nil
     if current_user && current_user.admin?
-      @users = User.paginate(page: params[:page])
+      @users = User.paginate(page: params[:page],per_page: 12)
     else
       flash[:warning] = "非管理员无权限！为您自动重定向到个人详情页"
       redirect_to current_user
