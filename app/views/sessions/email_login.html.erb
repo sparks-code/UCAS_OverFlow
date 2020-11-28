@@ -2,15 +2,33 @@
 
 <%= render "share/flash_message.html"%>
 
-<h1>邮箱验证登录</h1>
 
-<%= form_for(:session, url: deal_email_login_path) do |f| %>
-    <%= f.label :account, "学号/邮箱" %>
-    <%= f.text_field :account%>
+<div class="col-sm-3 my_row">
+    <div class="aTopAndBottom">
+        <h4 class="text-center"><span class="glyphicon glyphicon-home " style="float: left;"></span>
+            <div>邮箱验证登录</div>
+        </h4>
+    </div>
 
-    <%= f.submit "发送验证邮件"%>
-<% end %>
+    <div class="panel-body">
+        <%= form_for(:session, url: deal_email_login_path) do |f| %>
+            <div class="input-group">
+                <div class="input-group-addon"> <%= f.label :account, "学号/邮箱" %><span class="glyphicon glyphicon-user"></span></div>
+                <%= f.text_field :account, class: 'form-control', placeholder: "学号或邮箱" %>
+            </div>
 
-新用户？<%= link_to "立即注册！", new_user_path %>
-<%= link_to "密码登录？", login_path %>
+            <br>
 
+            <%= f.submit "发送验证邮件", class: "btn btn-success btn-block" %>
+        <% end %>
+    </div>
+
+    <div class="aTopAndBottom bottomSelect">
+        <table class="table">
+            <tr>
+                <td class="text-left"><%= link_to "新用户？立即注册！", new_user_path ,class: "user_link" %></td>
+                <td class="text-right"> <%= link_to "密码登录？", login_path ,class: "user_link" %></td>
+            </tr>
+        </table>
+    </div>
+</div>

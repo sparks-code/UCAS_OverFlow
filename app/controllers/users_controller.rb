@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   include SessionsHelper
 
   before_action :ensure_logged_in, except: [:new, :create]  # 除了新建用户，任何操作都要求登录
+  before_action :set_background_enable, only: [:new, :edit, :create, :update]
+  after_action :set_background_disable, except: [:new, :edit, :create, :update]
 
   def index
     @users=nil
@@ -111,6 +113,14 @@ class UsersController < ApplicationController
         flash[:warning] = "请先登录！"
         redirect_to login_url
       end
+    end
+
+    def set_background_enable
+      $user_background = true
+    end
+
+    def set_background_disable
+      $user_background = false
     end
 
     # 参数过滤器

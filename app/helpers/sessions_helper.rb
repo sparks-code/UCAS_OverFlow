@@ -50,6 +50,7 @@ module SessionsHelper
             return false
         end
         session[:user_id] = user.id
+        $user_background = false
         return true
     end
 
@@ -63,7 +64,12 @@ module SessionsHelper
 
     # 返回当前是否存在已登录用户
     def logged_in?
-        !self.current_user.nil?
+        if self.current_user.nil?
+            return false
+        else
+            $user_background = false
+            return true
+        end
     end
 
     # 存储转向地址

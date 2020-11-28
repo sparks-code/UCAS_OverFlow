@@ -2,52 +2,59 @@
 
 <%= render "share/flash_message.html"%>
 
-<h1>用户列表</h1>
+<div class="container-fluid">
+    <div class="col-sm-12">
+        <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+                <h1>用户列表</h1>
+            </div>
 
+            <div class="panel-body">
+                <table class="table table-responsive table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>头像</th>
+                            <th>姓名</th>
+                            <th>学号</th>
+                            <th>性别</th>
+                            <th>邮箱</th>
+                            <th>学院</th>
+                            <th>研究所</th>
+                            <th>专业</th>
+                            <th>管理员</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
 
-<%= will_paginate %>
+                    <tbody>
+                        <% @users.each do |user| %>
+                            <% if user.is_effective? %>
+                                <tr>
+                                    <td><%= gravatar_image(user, size: 30) %></td>
+                                    <td><%= link_to user.name, user %></td>
+                                    <td><%= link_to user.user_number, user %></td>
+                                    <td><%= user.sex %></td>
+                                    <td><%= user.email %></td>
+                                    <td><%= user.translate_academy %></td>
+                                    <td><%= user.translate_organization %></td>
+                                    <td><%= user.translate_project %></td>
+                                    <td><%= user.translate_admin %> </td>
+                                    <% if current_user.admin? && (current_user != user) %>
+                                        <td><%= link_to(user.admin ? "取消管理员权限" : "提升为管理员",options = {:controller => "users", :action => "set_admin", :user_id=>user.id}, html_options={:method => "post",confirm: "提升为管理员将与您有同等权限，是否继续?"} )%></td>
+                                        <td><%= link_to("删除", user, method: :delete, data: { confirm: "是否确认删除?" }) %></td>
+                                    <% else %>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    <% end %>
+                                </tr>
+                            <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
 
-<ul class="users">
-    <table border="1">
-        <tr>
-            <td>头像</td>
-            <td>姓名</td>
-            <td>学号</td>
-            <td>性别</td>
-            <td>邮箱</td>
-            <td>学院</td>
-            <td>研究所</td>
-            <td>专业</td>
-            <td>管理员</td> 
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-
-        <% @users.each do |user| %>
-            <% if user.is_effective? %>
-                <tr>
-                    <td><%= gravatar_image(user, size: 30) %></td>
-                    <td><%= link_to user.name, user %></td>
-                    <td><%= link_to user.user_number, user %></td>
-                    <td><%= user.sex %></td>
-                    <td><%= user.email %></td>
-                    <td><%= user.translate_academy %></td>
-                    <td><%= user.translate_organization %></td>
-                    <td><%= user.translate_project %></td>
-                    <td><%= user.translate_admin %> </td> 
-                    <% if current_user.admin? && (current_user != user) %>
-                        <td><%= link_to(user.admin ? "取消管理员权限" : "提升为管理员",options = {:controller => "users", :action => "set_admin", :user_id=>user.id}, html_options={:method => "post",confirm: "提升为管理员将与您有同等权限，是否继续?"} )%></td>
-                        <td><%= link_to("删除", user, method: :delete, data: { confirm: "是否确认删除?" }) %></td>
-                    <% else %>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    <% end %>
-                </tr>
-            <% end %>
-        <% end %>
-    </table>
-</ul>
-
-<%= will_paginate %>
-
-<%= link_to "回到首页", root_url %>
+                <%= will_paginate @users %>
+            </div>
+        </div>
+    </div>
+</div>

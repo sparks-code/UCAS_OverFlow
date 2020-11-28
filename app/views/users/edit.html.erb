@@ -4,12 +4,31 @@
 <%= render "share/user_write_error_messages.html"%>
 <%= render "share/flash_message.html"%><br>
 
-<h3>修改信息</h3>
-<%= render partial: 'form' %>
 
-<br>
-
-<%= link_to '个人详情', @user %> | <%= link_to "前往首页", root_url %><br>
-修改头像？<a href="https://cn.gravatar.com/" target="_blank">将新头像与邮箱绑定</a>
+ | <br>
 
 
+
+
+<div class="col-sm-3 edit_row">
+    <div class="aTopAndBottom">
+        <h4 class="text-center"><span class="glyphicon glyphicon-home " style="float: left;"></span>
+            <div>修改信息</div>
+        </h4>
+    </div>
+
+    <%= render partial: 'form' %>
+
+    <div class="aTopAndBottom bottomSelect">
+        <table  class="table table-condensed">
+            <tr>
+                <td class="text-left"><%= link_to '个人详情', @user , class: "user_link" %></td>
+                <td class="text-right"><%= link_to "前往首页", root_url, class: "user_link" %></td> 
+            </tr>
+        </table>
+
+        <a href="https://cn.gravatar.com/" target="_blank">
+            <div ><font style="text-align: center;color: rgb(39, 201, 201);">更新头像？</font></div>
+        </a>
+    </div>
+</div>

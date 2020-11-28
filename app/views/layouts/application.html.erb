@@ -9,8 +9,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="<%= "body-user-login-background" if params[:controller]=="sessions" || (params[:controller]=="users" && params[:action]=="new" )%>">
-    <%= yield %>
-    <!-- <%= debug(params) if Rails.env.development? %> -->
-  </body>
+  <!-- 全局变量解决背景问题，黔驴技穷了，为了不影响到你们工作，没办法了 -->
+  <% if $user_background %>
+    <body class="body-user-login-background" >
+      <%= yield %>
+    </body>
+  <% else %>
+    <body>
+      <%= yield %>
+      <!-- <%= debug(params) if Rails.env.development? %> -->
+    </body>
+  <% end %>
+
+  
 </html>

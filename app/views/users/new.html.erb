@@ -13,5 +13,12 @@
 
     <%= render partial: 'form' %>
 
-    <%= link_to '返回首页', root_url %>
+    <div class="aTopAndBottom bottomSelect">
+        <table class="table">
+            <tr>
+                <td class="text-left"><%= link_to "返回登录页！", login_url ,class: "user_link" %></td>
+                <td class="text-right"> <%= link_to "前往首页", root_url ,class: "user_link" %></td>
+            </tr>
+        </table>
+    </div>
 </div>

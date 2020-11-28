@@ -1,6 +1,12 @@
 class SessionsController < ApplicationController
   include SessionsHelper
 
+  before_action :set_use_background, except: [:destroy]
+
+  def set_use_background
+    $user_background = true
+  end
+
   def new
     # 已经登录则直接跳转到用户详情页
     redirect_to current_user if logged_in?
@@ -11,6 +17,8 @@ class SessionsController < ApplicationController
   def email_login
     # 已经登录则直接跳转到用户详情页
     redirect_to current_user if logged_in?
+
+    @current_url= email_login_url
   end
 
   def create
@@ -35,7 +43,8 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:account]) || User.find_by_user_number(params[:session][:account])
 
     if !user
-      flash[:error]="用户不存在"
+      flash.now[:error]="用户不存在"
+      @current_url= email_login_url
       render :email_login
       return
     end
