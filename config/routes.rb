@@ -1,14 +1,19 @@
 Rails.application.routes.default_url_options[:host] = "127.0.0.1:3000"
 
 Rails.application.routes.draw do
-  get 'account_activations/edit'
+
   get 'static_pages/home'
   get 'sessions/new'
   
   resources :resource_blogs
   resources :text_blogs
   resources :video_blogs
+
+###############################user路由####################################
+
   resources :users
+
+  get 'account_activations/edit'
   
   get '/activate', to: 'account_activations#activate_page'
   get '/activate_account', to: 'account_activations#activate_account'
@@ -24,6 +29,14 @@ Rails.application.routes.draw do
   post  '/deal_email_login', to: 'sessions#deal_email_login'
   get  '/validates_email_login', to: 'sessions#validates_email_login'
   post '/privilege', to: 'users#set_admin'
+
+  get 'user_videos', to: 'users#show_user_videoblogs'
+  get 'user_texts', to: 'users#show_user_textblogs'
+  get 'user_resources', to: 'users#show_user_resourceblogs'
+
+##################################################################################
+
+
 
   root 'users#hello'
   # 主页

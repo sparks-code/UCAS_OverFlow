@@ -5,6 +5,24 @@ class UsersController < ApplicationController
   before_action :set_background_enable, only: [:new, :edit, :create, :update]
   after_action :set_background_disable, except: [:new, :edit, :create, :update]
 
+  def show_user_videoblogs
+    @blogs = current_user.video_blogs.paginate(page: params[:page], per_page: 12)
+
+    @activate_type=3
+  end
+
+  def show_user_textblogs
+    @blogs = current_user.text_blogs.paginate(page: params[:page], per_page: 12)
+    
+    @activate_type=4
+  end
+
+  def show_user_resourceblogs
+    @blogs = current_user.resource_blog.paginate(page: params[:page], per_page: 12)
+    
+    @activate_type=5
+  end
+
   def index
     @activate_type=6
     @users=nil
@@ -28,6 +46,7 @@ class UsersController < ApplicationController
       # 强制非法访问时，返回空白信息
       @user = current_user
     end
+    @activate_type=1
   end
 
   def new
@@ -40,6 +59,7 @@ class UsersController < ApplicationController
     @current_url= edit_user_url
     @is_new_user=false
     @user = User.find_by(id: params[:id].to_i)
+    @activate_type=2
   end
 
   def create
