@@ -9,8 +9,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= "body-user-login-background" if params[:controller]=="sessions" || (params[:controller]=="users" && params[:action]=="new" )%>">
     <%= yield %>
-    <%= debug(params) if Rails.env.development? %>
+    <!-- <%= debug(params) if Rails.env.development? %> -->
   </body>
 </html>

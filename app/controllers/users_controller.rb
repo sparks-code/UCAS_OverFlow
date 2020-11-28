@@ -40,9 +40,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     unless @user.save
-      flash[:error]
       @is_new_user=true
-      render '/users/new'
+      redirect_to new_user_url
     else
       redirect_to activate_url(:activate_id=>@user.id)
     end

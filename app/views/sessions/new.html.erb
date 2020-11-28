@@ -2,46 +2,41 @@
 
 <%= render "share/flash_message.html"%>
 
-<div class="row">
-    <div class="col-sm-offset-4 col-sm-4">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h4 class="text-center"><span class="glyphicon glyphicon-home " style="float: left;"></span><div >用户登录</div></h4>
+<div class="col-sm-3 row">
+    <div class="aTopAndBottom">
+        <h4 class="text-center"><span class="glyphicon glyphicon-home " style="float: left;"></span>
+            <div>用户登录</div>
+        </h4>
+    </div>
+    <div class="panel-body">
+        <%= form_for(:session, url: login_path) do |f| %>
+        <div class="input-group">
+            <div class="input-group-addon"><%= f.label :account, "账户" %> <span class="glyphicon glyphicon-user"></span>
             </div>
-            <div class="panel-body">
-
-                <%= form_for(:session, url: login_path) do |f| %>
-                    <div class="input-group">
-                        <div class="input-group-addon"><%= f.label :account, "账户" %> <span class="glyphicon glyphicon-user"></span></div>
-                        <%= f.text_field :account , class: 'form-control', placeholder: "学号或邮箱"%>
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <div class="input-group-addon"><%= f.label :password, "密码" %> <span class="glyphicon glyphicon-lock"></span></div>
-                        <%= f.password_field :password, class: 'form-control', placeholder: "密码" %>
-                    </div>
-
-
-                    <div class="checkbox">
-                        <label><%= f.check_box :remember_me %>自动登录</label>
-                    </div>
-
-                    <%= f.submit "登录", class: "btn btn-success btn-block" %>
-                <% end %>
-            </div>
-
-            <div class="panel-footer">
-                <table  class="table table-hover">
-
-                    <tr>
-                        <td class="text-left">新用户?<%= link_to "立即注册！", new_user_path %></td>
-                        <td class="text-right"><%= link_to "忘记密码？", email_login_path  %></td>
-                    </tr>
-                </table>
-            </div>
+            <%= f.text_field :account , class: 'form-control', placeholder: "学号或邮箱"%>
         </div>
+        <br>
+        <div class="input-group">
+            <div class="input-group-addon"><%= f.label :password, "密码" %> <span class="glyphicon glyphicon-lock"></span>
+            </div>
+            <%= f.password_field :password, class: 'form-control', placeholder: "密码" %>
+        </div>
+
+
+        <div class="checkbox">
+            <label><%= f.check_box :remember_me %>自动登录</label>
+        </div>
+
+        <%= f.submit "登录", class: "btn btn-success btn-block" %>
+        <% end %>
+    </div>
+
+    <div class="aTopAndBottom bottomSelect">
+        <table class="table">
+            <tr>
+                <td class="text-left"><%= link_to "新用户?立即注册！", new_user_path ,class: "user_link" %></td>
+                <td class="text-right"> <%= link_to "忘记密码？", email_login_path ,class: "user_link" %></td>
+            </tr>
+        </table>
     </div>
 </div>
-
-            
-
