@@ -1,7 +1,7 @@
 <!-- 显示错误信息 -->
 <% if !flash.empty? %>
   <div id="flash_alert" class="alert alert-warning">
-    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <a href=<%= @current_url %> class="close" data-dismiss="alert">&times;</a>
       <ul>
         <% flash.each do |key, value| %>
         <li>

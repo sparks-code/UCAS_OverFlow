@@ -1,7 +1,7 @@
 <%- if @user.errors %>
     <%-  if @user.errors.full_messages.present? %>
         <div id="flash_alert" class="alert alert-warning">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <a href=<%= @current_url %> class="close" data-dismiss="alert">&times;</a>
             <ul>
                 <% @user.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>

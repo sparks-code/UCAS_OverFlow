@@ -4,7 +4,14 @@
 <%= render "share/user_write_error_messages.html"%>
 <%= render "share/flash_message.html"%>
 
-<h3>用户注册</h3>
-<%= render partial: 'form' %>
-<br>
-<%= link_to '返回首页', root_url %>
+<div class="col-sm-3 edit_row">
+    <div class="aTopAndBottom">
+        <h4 class="text-center"><span class="glyphicon glyphicon-home " style="float: left;"></span>
+            <div>用户注册</div>
+        </h4>
+    </div>
+
+    <%= render partial: 'form' %>
+
+    <%= link_to '返回首页', root_url %>
+</div>

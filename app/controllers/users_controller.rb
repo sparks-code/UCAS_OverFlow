@@ -28,26 +28,31 @@ class UsersController < ApplicationController
   end
 
   def new
+    @current_url= new_user_url
     @is_new_user=true
     @user = User.new
   end
 
   def edit
+    @current_url= edit_user_url
     @is_new_user=false
     @user = User.find_by(id: params[:id].to_i)
   end
 
   def create
+    @current_url= new_user_url
     @user = User.new(user_params)
     unless @user.save
       @is_new_user=true
-      redirect_to new_user_url
+      # redirect_to new_user_url
+      render :new
     else
       redirect_to activate_url(:activate_id=>@user.id)
     end
   end
 
   def update
+    @current_url= edit_user_url
     @user = User.find(params[:id])
 
     # 判断待更新邮箱是否存在
