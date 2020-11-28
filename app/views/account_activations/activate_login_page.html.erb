@@ -1,3 +1,19 @@
-<p>登录邮件已经发送到您的邮箱(<%= @user.email %>)，注意此邮件仅生效一次</p>
+<% provide(:title, "等待邮箱激活登录") %>
 
-<%= link_to "返回登录页", email_login_url %>
+<%= render "share/flash_message.html"%>
+
+<div class="col-sm-3 my_row">
+    <div class="aTopAndBottom">
+        <h4 class="text-center"><span class="glyphicon glyphicon-star-empty " style="float: center;color: green;"></span>
+            <div style="float: center;color: green;">等待邮箱激活登录</div>
+        </h4>
+    </div>
+
+    <div class="panel-body">
+        <p style="color: white;">登录邮件已经发送到您的邮箱(<%= @user.email %>)，注意此邮件仅生效一次</p>
+    </div>
+
+    <div class="aTopAndBottom bottomSelect">
+        <%= link_to "返回登录页", email_login_url,class: "user_link" %>
+    </div>
+</div>

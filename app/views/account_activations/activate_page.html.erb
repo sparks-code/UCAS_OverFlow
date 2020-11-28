@@ -1,3 +1,19 @@
-<p>您的账户尚未激活，请登录到您的邮箱，点击链接完成激活</p>
+<% provide(:title, "等待邮箱激活账户") %>
 
-<%= link_to "返回登录页", login_url %>
+<%= render "share/flash_message.html"%>
+
+<div class="col-sm-3 my_row">
+    <div class="aTopAndBottom">
+        <h4 class="text-center"><span class="glyphicon glyphicon-star-empty " style="color: green;"></span>
+            <div style="color: green;">等待邮箱激活账户</div>
+        </h4>
+    </div>
+
+    <div class="panel-body">
+        <p style="color: white;">您的账户尚未激活，请登录到您的邮箱，点击链接完成激活</p>
+    </div>
+
+    <div class="aTopAndBottom bottomSelect">
+        <%= link_to "返回登录页", login_url,class: "user_link" %>
+    </div>
+</div>
