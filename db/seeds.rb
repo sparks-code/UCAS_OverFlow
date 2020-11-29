@@ -23,3 +23,8 @@ end
     academy_name = "#{n+675}学院"
     Project.create!(code_number: code_number_project, project_name: project_name)
 end
+
+#genetare Tag
+Tag.create("数学")
+Tag.create("计算机")
+Tag.create("日常生活")

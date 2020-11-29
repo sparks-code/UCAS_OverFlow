@@ -17,7 +17,7 @@
     <% @video_blogs.each do |video_blog| %>
       <tr>
         <td><%= video_blog.title %></td>
-        <td><%= video_blog.tag %></td>
+        <td><%= video_blog.tag.name %></td>
         <td><%= video_blog.response_count %></td>
         <td><%= video_blog.click_count %></td>
         <td><%= video_blog.user.name %></td>

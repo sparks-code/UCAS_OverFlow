@@ -10,8 +10,8 @@
 <%= form_for @video_blog do |f| %>
     <%= f.label :title, "标题" %>
     <%= f.text_field :title %>
-    <%= f.label :tag, "标签" %>
-    <%= f.text_field :tag %>
+    <%= f.label :tag_id, "标签" %>
+    <%= f.select :tag_id, @all_tags, :prompt=>"请选择板块" %>
     <%= f.label :file_path, "选择视频" %>
     <%= f.file_field :file_path %>
     <br><br>

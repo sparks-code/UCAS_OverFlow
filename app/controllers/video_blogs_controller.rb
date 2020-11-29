@@ -18,15 +18,18 @@ class VideoBlogsController < ApplicationController
   # GET /video_blogs/new
   def new
     @video_blog = VideoBlog.new
+    @all_tags = Tag.get_all_tags
   end
 
   # GET /video_blogs/1/edit
   def edit
+    @all_tags = Tag.get_all_tags
   end
 
   # POST /video_blogs
   # POST /video_blogs.json
   def create
+    #@all_tags = Tag.get_all_tags
     @video_blog = current_user.video_blogs.new(video_blog_params)
     @video_blog.response_count = 0
     @video_blog.click_count = 0
@@ -40,15 +43,6 @@ class VideoBlogsController < ApplicationController
     else
       redirect_to "/video_blogs/#{@video_blog.id}"
     end
-    # respond_to do |format|
-    #   if @video_blog.save
-    #     format.html { redirect_to @video_blog, notice: 'Video blog was successfully created.' }
-    #     format.json { render :show, status: :created, location: @video_blog }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @video_blog.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def uploadfile(file)
@@ -101,6 +95,6 @@ class VideoBlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_blog_params
-      params.require(:video_blog).permit(:title, :tag)
+      params.require(:video_blog).permit(:title, :tag_id)
     end
 end
