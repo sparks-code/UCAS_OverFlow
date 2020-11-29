@@ -48,3 +48,7 @@ rails generate migration add_file_path_to_video_blogs file_path:string
 
 rails generate migration remove_file_transfer_id_from_video_blogs file_transfer_id:integer
 
+#修改resourceBlog
+修改resourceBlog
+rails generate migration add_file_path_to_resource_blogs file_path:string
+rails generate migration remove_file_transfer_id_from_resource_blogs file_transfer_id:integer

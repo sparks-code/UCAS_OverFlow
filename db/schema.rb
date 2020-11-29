@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_080825) do
+ActiveRecord::Schema.define(version: 2020_11_29_040034) do
 
   create_table "academy_organizations", force: :cascade do |t|
     t.string "code_number"
@@ -49,10 +49,9 @@ ActiveRecord::Schema.define(version: 2020_11_24_080825) do
     t.integer "click_count"
     t.integer "accessment"
     t.integer "user_id"
-    t.integer "file_transfer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["file_transfer_id"], name: "index_resource_blogs_on_file_transfer_id"
+    t.string "file_path"
     t.index ["user_id"], name: "index_resource_blogs_on_user_id"
   end
 
