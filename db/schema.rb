@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_29_040034) do
+ActiveRecord::Schema.define(version: 2020_11_29_044011) do
 
   create_table "academy_organizations", force: :cascade do |t|
     t.string "code_number"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2020_11_29_040034) do
 
   create_table "resource_blogs", force: :cascade do |t|
     t.string "title"
-    t.string "tag"
     t.integer "response_count"
     t.integer "click_count"
     t.integer "accessment"
@@ -52,12 +51,20 @@ ActiveRecord::Schema.define(version: 2020_11_29_040034) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file_path"
+    t.integer "tag_id"
+    t.index ["tag_id"], name: "index_resource_blogs_on_tag_id"
     t.index ["user_id"], name: "index_resource_blogs_on_user_id"
   end
 
   create_table "resource_replies", force: :cascade do |t|
     t.string "reply"
     t.string "references"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -100,7 +107,6 @@ ActiveRecord::Schema.define(version: 2020_11_29_040034) do
 
   create_table "video_blogs", force: :cascade do |t|
     t.string "title"
-    t.string "tag"
     t.integer "response_count"
     t.integer "click_count"
     t.integer "accessment"
@@ -108,6 +114,8 @@ ActiveRecord::Schema.define(version: 2020_11_29_040034) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file_path"
+    t.integer "tag_id"
+    t.index ["tag_id"], name: "index_video_blogs_on_tag_id"
     t.index ["user_id"], name: "index_video_blogs_on_user_id"
   end
 

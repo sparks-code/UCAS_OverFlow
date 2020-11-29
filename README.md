@@ -53,5 +53,12 @@ rails generate migration remove_file_transfer_id_from_resource_blogs file_transf
 
 #数据库修改3
 新增tag库
+rails generate model Tag name:string
+移除tag字段并添加外键
+rails generate migration remove_tag_from_video_blogs tag:string
+rails generate migration remove_tag_from_resource_blogs tag:string
+
+rails generate migration add_tag_ref_to_video_blog tag:references
+rails generate migration add_tag_ref_to_resource_blog tag:references
 
 ```
