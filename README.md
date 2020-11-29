@@ -18,17 +18,17 @@ rails generate scaffold FileTransfer file_path:string introduction:string
 
 # 创建Video表
 rails generate scaffold VideoBlog title:string tag:string response_count:integer click_count:integer accessment:integer user:references file_transfer:references 
-rails generate model VideoReply  reply: references
+rails generate model VideoReply  reply:references
 -------------------------------------------
 
 #创建TextBlog表
 rails generate scaffold TextBlog title:string tag:string content:text response_count:integer click_count:integer accessment:integer user:references file_transfer:references
-rails generate model TextReply  reply: references video_blog: references
+rails generate model TextReply  reply:references
 -------------------------------------
 
 # 创建Resource表
 rails generate scaffold ResourceBlog title:string tag:string response_count:integer click_count:integer accessment:integer user:references file_transfer:references
-rails generate model ResourceReply  reply: references
+rails generate model ResourceReply  reply:references
 
 # 消息回复数据库
 rails generate model Reply send_user_id:integer receive_user_id:integer content:string
@@ -61,4 +61,12 @@ rails generate migration remove_tag_from_resource_blogs tag:string
 rails generate migration add_tag_ref_to_video_blog tag:references
 rails generate migration add_tag_ref_to_resource_blog tag:references
 
+#修改回复
+rails destroy model VideoReply
+rails destroy model TextReply
+rails destroy model ResourceReply
+
+rails generate model VideoReply  reply:references video_blog:references
+rails generate model TextReply  reply:references text_blog:references
+rails generate model ResourceReply  reply:references resource_blog:references
 ```

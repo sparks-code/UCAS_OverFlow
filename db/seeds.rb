@@ -5,24 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-99.times do |n|
-    name  = Faker::Name.name
-    num = "%03d"%(n+1)
-    user_number="#{rand(2019..2022)}#{rand(1..2)}#{rand(50149..50152)}#{rand(55..60)}#{num}"
-    email = "test_#{n+1}@eamil.com"
-    password = "password"
-    sex = rand(1..2)==1 ? "男" : "女"
-    User.create!(name: name ,user_number: user_number, email: email,sex: sex , password: password, password_confirmation: password)
-end
+# 99.times do |n|
+#     name  = Faker::Name.name
+#     num = "%03d"%(n+1)
+#     user_number="#{rand(2019..2022)}#{rand(1..2)}#{rand(50149..50152)}#{rand(55..60)}#{num}"
+#     email = "test_#{n+1}@eamil.com"
+#     password = "password"
+#     sex = rand(1..2)==1 ? "男" : "女"
+#     User.create!(name: name ,user_number: user_number, email: email,sex: sex , password: password, password_confirmation: password)
+# end
 
-99.times do |n|
-    code_number_project = "#{"%02d"%(n)}"
-    code_number_academy_organization = "#{50100+n}"
+# 99.times do |n|
+#     code_number_project = "#{"%02d"%(n)}"
+#     code_number_academy_organization = "#{50100+n}"
 
-    project_name = "#{n%10 + 342}研究所"
-    academy_name = "#{n+675}学院"
-    Project.create!(code_number: code_number_project, project_name: project_name)
-end
+#     project_name = "#{n%10 + 342}研究所"
+#     academy_name = "#{n+675}学院"
+#     Project.create!(code_number: code_number_project, project_name: project_name)
+# end
 
 #genetare Tag
 Tag.create("数学")

@@ -24,12 +24,13 @@ class VideoBlogsController < ApplicationController
   # GET /video_blogs/1/edit
   def edit
     @all_tags = Tag.get_all_tags
+    @all_tags = Tag.get_all_tags
   end
 
   # POST /video_blogs
   # POST /video_blogs.json
   def create
-    #@all_tags = Tag.get_all_tags
+    @all_tags = Tag.get_all_tags
     @video_blog = current_user.video_blogs.new(video_blog_params)
     @video_blog.response_count = 0
     @video_blog.click_count = 0
