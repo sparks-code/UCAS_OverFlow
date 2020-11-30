@@ -7,4 +7,14 @@ module UsersHelper
     end
 end
 
+module ActivateType
+    BackToHome=0
+    UserInformation=1
+    UpdateInformation=2
+    MyVideosBlog=3
+    MyTextBlogs=4
+    MyResourceBlogs=5
+    ShowUsers=6
+end
+
 # 注册网址 https://en.gravatar.com/

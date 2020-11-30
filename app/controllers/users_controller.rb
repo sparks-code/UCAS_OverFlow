@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include SessionsHelper
+  include ActivateType
 
   before_action :ensure_logged_in, except: [:new, :create]  # 除了新建用户，任何操作都要求登录
   before_action :set_background_enable, only: [:new, :edit, :create, :update]
@@ -8,23 +9,23 @@ class UsersController < ApplicationController
   def show_user_videoblogs
     @blogs = current_user.video_blogs.paginate(page: params[:page], per_page: 12)
 
-    @activate_type=3
+    @activate_type=ActivateType::MyVideosBlog
   end
 
   def show_user_textblogs
     @blogs = current_user.text_blogs.paginate(page: params[:page], per_page: 12)
     
-    @activate_type=4
+    @activate_type=ActivateType::MyTextBlogs
   end
 
   def show_user_resourceblogs
     @blogs = current_user.resource_blog.paginate(page: params[:page], per_page: 12)
     
-    @activate_type=5
+    @activate_type=ActivateType::MyResourceBlogs
   end
 
   def index
-    @activate_type=6
+    @activate_type=ActivateType::ShowUsers
     @users=nil
     if current_user && current_user.admin?
       @users = User.paginate(page: params[:page],per_page: 12)
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
       # 强制非法访问时，返回空白信息
       @user = current_user
     end
-    @activate_type=1
+    @activate_type=ActivateType::UserInformation
   end
 
   def new
@@ -59,7 +60,7 @@ class UsersController < ApplicationController
     @current_url= edit_user_url
     @is_new_user=false
     @user = User.find_by(id: params[:id].to_i)
-    @activate_type=2
+    @activate_type=ActivateType::UpdateInformation
   end
 
   def create
