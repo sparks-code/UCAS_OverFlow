@@ -21,12 +21,12 @@
             </div>
             <%= f.password_field :password, class: 'form-control', placeholder: "密码" %>
         </div>
-
-
-        <div class="checkbox">
-            <label><%= f.check_box :remember_me %>自动登录</label>
+        <br>
+        <div class="form-check">
+            <%= f.check_box :remember_me, id: "my-input", class: "form-check-input",checked: true%>
+            <label for="my-input" class="form-check-label">自动登录</label>
         </div>
-
+        <br>
         <%= f.submit "登录", class: "btn btn-success btn-block" %>
         <% end %>
     </div>
