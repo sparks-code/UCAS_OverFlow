@@ -10,19 +10,14 @@ class SessionsController < ApplicationController
   def new
     # 已经登录则直接跳转到用户详情页
     redirect_to current_user if logged_in?
-
-    @current_url= login_url
   end
 
   def email_login
     # 已经登录则直接跳转到用户详情页
     redirect_to current_user if logged_in?
-
-    @current_url= email_login_url
   end
 
   def create
-    @current_url= login_url
     # 通过学号或邮箱查询用户
     user = User.find_by_email(params[:session][:account]) || User.find_by_user_number(params[:session][:account])
 
@@ -44,7 +39,6 @@ class SessionsController < ApplicationController
 
     if !user
       flash.now[:error]="用户不存在"
-      @current_url= email_login_url
       render :email_login
       return
     end
