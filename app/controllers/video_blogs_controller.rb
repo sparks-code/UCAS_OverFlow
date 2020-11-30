@@ -1,6 +1,7 @@
 class VideoBlogsController < ApplicationController
+  include SessionsHelper
   before_action :set_video_blog, only: [:show, :edit, :update, :destroy, :deal_reply]
-    include SessionsHelper
+  before_action :ensure_logged_in
   # GET /video_blogs
   # GET /video_blogs.json
   def index
@@ -105,6 +106,14 @@ class VideoBlogsController < ApplicationController
   end
   
   private
+    def ensure_logged_in
+      unless logged_in?
+        store_forwarding_url
+        flash[:warning] = "请先登录！"
+        redirect_to login_url
+      end
+    end  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_video_blog
       @video_blog = VideoBlog.find(params[:id])
