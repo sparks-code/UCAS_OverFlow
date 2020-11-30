@@ -69,4 +69,6 @@ rails destroy model ResourceReply
 rails generate model VideoReply  reply:references video_blog:references
 rails generate model TextReply  reply:references text_blog:references
 rails generate model ResourceReply  reply:references resource_blog:references
+
+rails generate controller VideoReplys new edit
 ```

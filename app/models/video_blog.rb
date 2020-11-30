@@ -1,6 +1,7 @@
 class VideoBlog < ApplicationRecord
   belongs_to :user
   belongs_to :tag
+  has_many :video_replys
   validates :title, presence: true, allow_nil: false, length: { minimum: 2, maximum: 100 }
   #validates :tag, presence: true, length: { minimum: 2, maximum: 20 }
   validates :file_path, presence: true

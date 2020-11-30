@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post  '/login', to: 'sessions#create'
   post '/privilege', to: 'users#set_admin'
+
+  post  '/video_blogs/:id/reply', to: 'video_blogs#deal_reply', as: "video_replys"
 end
 

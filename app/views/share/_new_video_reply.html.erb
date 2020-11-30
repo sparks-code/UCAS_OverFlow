@@ -1,0 +1,4 @@
+<%= form_tag({controller: "video_blogs",action: "deal_reply"}, {method: "post"}) do%>
+    <%= text_field_tag(:content) %>
+    <%= submit_tag("回复") %>
+<% end %>

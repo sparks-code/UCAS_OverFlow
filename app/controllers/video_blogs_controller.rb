@@ -24,7 +24,6 @@ class VideoBlogsController < ApplicationController
   # GET /video_blogs/1/edit
   def edit
     @all_tags = Tag.get_all_tags
-    @all_tags = Tag.get_all_tags
   end
 
   # POST /video_blogs
@@ -87,7 +86,21 @@ class VideoBlogsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  # POST /video_blogs/1/reply
+  def deal_reply
+    set_video_blog
+    @reply = Reply.create(send_user_id: current_user.id,receive_user_id: params[:receive_id], content: params[:content]) 
+    @video_reply = @video_blog.video_replys.new
+    @video_reply.reply_id = @reply.id
+    unless @video_blog.save
+      flash.now[:success] = "发表成功"
+    else
+      flash.now[:danger] = "发表失败"
+    end
+    redirect_to "/video_blogs/#{@video_blog.id}"
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video_blog

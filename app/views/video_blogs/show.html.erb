@@ -4,6 +4,10 @@
   <title><%= @video_blog.title %></title>
 </head>
 
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <body>
   <%= video_tag @video_blog.file_path, :size => "320x240", :controls => true %>
   <h3>视频信息</h3>
@@ -33,6 +37,7 @@
         <td><%=  @video_blog.click_count %></td>
       </tr>
     </table>
+  <%= render "share/new_video_reply" %>
 </body>
 
 <%= link_to '编辑', edit_video_blog_path(@video_blog) %> |
