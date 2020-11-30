@@ -1,5 +1,5 @@
 class VideoBlogsController < ApplicationController
-  before_action :set_video_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_video_blog, only: [:show, :edit, :update, :destroy, :deal_reply]
     include SessionsHelper
   # GET /video_blogs
   # GET /video_blogs.json
@@ -13,6 +13,7 @@ class VideoBlogsController < ApplicationController
     @video_blog = VideoBlog.find(params[:id])
     @video_blog.click_count += 1
     @video_blog.save
+    @feed_items = @video_blog.feed.paginate(page: params[:page])
   end
 
   # GET /video_blogs/new
@@ -89,8 +90,10 @@ class VideoBlogsController < ApplicationController
   
   # POST /video_blogs/1/reply
   def deal_reply
-    set_video_blog
-    @reply = Reply.create(send_user_id: current_user.id,receive_user_id: params[:receive_id], content: params[:content]) 
+    #set_video_blog
+    @video_blog.response_count += 1
+    @video_blog.save
+    @reply = Reply.create(send_user_id: current_user.id,receive_user_id: params[:receiver_id], content: params[:content]) 
     @video_reply = @video_blog.video_replys.new
     @video_reply.reply_id = @reply.id
     unless @video_blog.save

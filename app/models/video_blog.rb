@@ -9,4 +9,7 @@ class VideoBlog < ApplicationRecord
   # validates :response_count
   # validates :click_count
   # validates :accessment
+  def feed
+    VideoReply.where("video_blog_id = ?", self.id)
+  end
 end
