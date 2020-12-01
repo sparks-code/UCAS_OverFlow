@@ -62,19 +62,11 @@ class User < ApplicationRecord
         end
     end
 
-    def translate_academy
-        if AcademyOrganization.find_by(:code_number=>self.organization)
-            return AcademyOrganization.find_by(:code_number=>self.organization).academy_name
-        else
-            return self.organization
-        end
-    end
-
     def translate_organization
         if AcademyOrganization.find_by(:code_number=>self.organization)
             return AcademyOrganization.find_by(:code_number=>self.organization).organization_name
         else
-            return self.organization
+            return self.organization+("(暂未收录)")
         end
     end
 
@@ -82,7 +74,7 @@ class User < ApplicationRecord
         if Project.find_by(:code_number=>self.project)
             return Project.find_by(:code_number=>self.project).project_name
         else
-            return self.project
+            return self.project+("(暂未收录)")
         end 
     end
 

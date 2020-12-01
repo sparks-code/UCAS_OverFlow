@@ -7,6 +7,7 @@ ruby '2.7.0'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'roo'
 
 # 自己增加的包
 gem 'fake'
