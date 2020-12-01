@@ -110,7 +110,7 @@ class VideoBlogsController < ApplicationController
   
   #GET '/video_blogs/tags/:id'
   def show_tag
-    render video_blogs_path
+    
   end
   
   private

@@ -3,7 +3,7 @@
 
 ## 开发环境：
 * 开发语言：`Ruby`
-* 开发环境：`Ubuntu 20.04， ruby 2.7.0,  Rails 5.2.4.4`
+* 开发环境：`Ubuntu 20.04， ruby 2.7.0,  Rails 5.2.4.4 bootstrap vue.js`
 
 ## 环境复现
 ```Bash
