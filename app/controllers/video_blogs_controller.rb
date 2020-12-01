@@ -6,6 +6,7 @@ class VideoBlogsController < ApplicationController
   # GET /video_blogs.json
   def index
     @video_blogs = VideoBlog.all
+    @tags = Tag.all
   end
 
   # GET /video_blogs/1
@@ -70,7 +71,7 @@ class VideoBlogsController < ApplicationController
   def update
     respond_to do |format|
       if @video_blog.update(video_blog_params)
-        format.html { redirect_to @video_blog, notice: 'Video blog was successfully updated.' }
+        format.html { redirect_to @video_blog, notice: '更新成功' }
         format.json { render :show, status: :ok, location: @video_blog }
       else
         format.html { render :edit }
@@ -110,7 +111,8 @@ class VideoBlogsController < ApplicationController
   
   #GET '/video_blogs/tags/:id'
   def show_tag
-    
+    @tag_name = Tag.find(params[:id]).name
+    @tag_video_blogs = VideoBlog.where("id = ?", params[:id])
   end
   
   private

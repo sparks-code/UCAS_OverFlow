@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 <h1>MOOC区</h1>
+<hr>
+<h2> 板块 </h2>
+<% @tags.each do |tag| %>
+  <td><%= link_to tag.name, show_tag_path(:id => tag.id) %></td>
+<% end %>
+<hr>
 
 <table>
   <thead>
