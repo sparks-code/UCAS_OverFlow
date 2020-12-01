@@ -82,6 +82,9 @@ class VideoBlogsController < ApplicationController
   # DELETE /video_blogs/1
   # DELETE /video_blogs/1.json
   def destroy
+    ids = @video_blog.video_replys.collect{|x| x.reply.id} #some BUG with foreign key --zh
+    @video_blog.video_replys.each{|x| x.destroy}
+    ids.each{|id| Reply.find(id).destroy}
     @video_blog.destroy
     respond_to do |format|
       format.html { redirect_to video_blogs_url, notice: '删除成功！' }
@@ -103,6 +106,11 @@ class VideoBlogsController < ApplicationController
       flash.now[:danger] = "发表失败"
     end
     redirect_to "/video_blogs/#{@video_blog.id}"
+  end
+  
+  #GET '/video_blogs/tags/:id'
+  def show_tag
+    render video_blogs_path
   end
   
   private
