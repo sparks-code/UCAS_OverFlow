@@ -1,0 +1,6 @@
+<%= form_tag({controller: "video_blogs",action: "deal_reply"}, {method: "post"}) do%> 
+    <%= render "share/feed_reply" %>
+    <%= text_field_tag(:content) %>
+    <%= radio_button_tag :receiver_id, @video_blog.user_id %>回复帖子
+    <%= submit_tag("回复") %>
+<% end %>

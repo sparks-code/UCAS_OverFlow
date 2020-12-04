@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>发送者</th>
+      <th>回复者</th>
+      <th>内容</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @feed_items.each do |feed_item| %>
+      <tr>
+        <td><%= feed_item.reply.send_user_id %></td>
+        <td><%= feed_item.reply.receive_user_id %></td>
+        <td><%= feed_item.reply.content %></td>
+        <td><%= radio_button_tag :receiver_id, feed_item.reply.send_user_id, 1 %>回复</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @feed_items %>

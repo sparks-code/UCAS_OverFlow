@@ -1,12 +1,8 @@
-<p id="notice"><%= notice %></p>
-<h1>MOOC区</h1>
-<hr>
-<h2> 板块 </h2>
-<% @tags.each do |tag| %>
-  <td><%= link_to tag.name, show_tag_path(:id => tag.id) %></td>
-<% end %>
-<hr>
-
+<h1>
+    MOOC区
+    <%= @tag_name %>
+    板块
+</h1>
 <table>
   <thead>
     <tr>
@@ -20,7 +16,7 @@
   </thead>
 
   <tbody>
-    <% @video_blogs.each do |video_blog| %>
+    <% @tag_video_blogs.each do |video_blog| %>
       <tr>
         <td><%= video_blog.title %></td>
         <td><%= video_blog.tag.name %></td>
@@ -34,7 +30,6 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to '返回', video_blogs_path %>
 
 <br>
-
-<%= link_to '发布视频', new_video_blog_path %>
