@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
 <div id="user_write_messages">
     <template v-if="show_messages">
@@ -35,3 +36,14 @@
     });
 
 </script>
+=======
+<%- if @user.errors %>
+    <%-  if @user.errors.full_messages.present? %>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+        </ul>
+    <% end -%>
+<% end -%>
+>>>>>>> ab637d2b2f734b236864521c2de849ceebdaffad

@@ -63,16 +63,23 @@ ActiveRecord::Schema.define(version: 2020_12_01_050531) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "text_blogs", force: :cascade do |t|
     t.string "title"
-    t.string "tag"
     t.text "content"
-    t.integer "response_count"
-    t.integer "click_count"
+    t.integer "response_count", default: 0
+    t.integer "click_count", default: 0
     t.integer "accessment"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tag_id"
+    t.index ["tag_id"], name: "index_text_blogs_on_tag_id"
     t.index ["user_id"], name: "index_text_blogs_on_user_id"
   end
 

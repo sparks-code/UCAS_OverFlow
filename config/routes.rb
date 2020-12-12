@@ -1,7 +1,13 @@
 Rails.application.routes.default_url_options[:host] = "127.0.0.1:3000"
 
 Rails.application.routes.draw do
+<<<<<<< HEAD
 
+=======
+  get 'video_replys/new'
+  get 'video_replys/edit'
+  get 'account_activations/edit'
+>>>>>>> ab637d2b2f734b236864521c2de849ceebdaffad
   get 'static_pages/home'
   get 'sessions/new'
   

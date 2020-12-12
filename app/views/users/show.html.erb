@@ -1,4 +1,90 @@
+<<<<<<< HEAD
 <% provide(:title, @user.name+"个人信息") %>
+=======
+<html>
+
+<head>
+  <% provide(:title, @user.name+"个人信息") %>
+</head>
+
+<body>
+
+  <%= render "share/flash_message.html"%><br>
+  <%= gravatar_image(@user) %>
+
+  <h3>基本信息：</h3>
+  <HR>
+    <table border="0">
+      <tr>
+        <td>姓名：</td>
+        <td><%= @user.name %></td>
+      </tr>
+    
+      <tr>
+        <td>性别：</td>
+        <td><%= @user.sex %></td>
+      </tr>
+
+      <tr>
+        <td>邮箱：</td>
+        <td><%= @user.email %></td>
+      </tr>
+
+      <tr>
+        <td>管理员：</td>
+        <td><%=  @user.translate_admin %></td>
+      </tr>
+    </table>
+    
+    <h3>学习信息：</h3>
+    <HR>
+    <table border="0">
+      <tr>
+        <td>年级：</td>
+        <td><%= @user.translate_grade %></td>
+      </tr>
+
+      <tr>
+        <td>学号：</td>
+        <td><%= @user.user_number %></td>
+      </tr>
+
+      <tr>
+        <td>学院：</td>
+        <td><%= @user.translate_academy %></td>
+      </tr>
+    
+      <tr>
+        <td>研究所：</td>
+        <td><%= @user.translate_organization %></td>
+      </tr>
+    
+      <tr>
+        <td>专业：</td>
+        <td><%= @user.translate_project %></td>
+      </tr>
+    
+      <tr>
+        <td>学生类型：</td>
+        <td><%= @user.translate_type %></td>
+      </tr>
+
+    </table>
+
+    <%- if @user == current_user %>
+    <%= link_to '编辑', edit_user_path(@user) %> |
+    <% end -%>
+
+    <%- if current_user.admin %>
+      <%= link_to '查看所有用户', users_path %> |
+    <% end -%>
+
+    <%= link_to '回到首页', root_url %>
+
+</body>
+
+</html>
+>>>>>>> ab637d2b2f734b236864521c2de849ceebdaffad
 
 
 <%= render "share/flash_message.html"%><br>

@@ -1,5 +1,6 @@
 <% provide(:title, "用户登录") %>
 
+<<<<<<< HEAD
 <%= render "share/flash_message.html"%>
 
 
@@ -9,6 +10,15 @@
             <div>邮箱验证登录</div>
         </h4>
     </div>
+=======
+<h1>邮箱验证登录</h1>
+
+<%= render "share/flash_message.html"%>
+
+<%= form_for(:session, url: deal_email_login_path) do |f| %>
+    <%= f.label :account, "学号/邮箱" %>
+    <%= f.text_field :account%>
+>>>>>>> ab637d2b2f734b236864521c2de849ceebdaffad
 
     <div class="panel-body">
         <%= form_for(:session, url: deal_email_login_path) do |f| %>

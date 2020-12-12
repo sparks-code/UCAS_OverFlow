@@ -76,7 +76,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     # 判断待更新邮箱是否存在
-    if User.find_by(:email=>params[:user][:new_email]) && @user.email != params[:user][:new_email]
+    if User.find_by(:email=>params[:user][:new_email])
       flash.now[:error]="新邮箱已经被注册"
       @is_new_user=false
       render 'edit'
