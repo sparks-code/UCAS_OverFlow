@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  reply: one
-  video_blog: one
+  name: MyString
 
 two:
-  reply: two
-  video_blog: two
+  name: MyString
