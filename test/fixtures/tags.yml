@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  reply: MyString
-  references: MyString
+  name: MyString
 
 two:
-  reply: MyString
-  references: MyString
+  name: MyString

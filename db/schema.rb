@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_073846) do
+ActiveRecord::Schema.define(version: 2020_12_12_103401) do
 
   create_table "academy_organizations", force: :cascade do |t|
     t.string "code_number"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2020_11_27_073846) do
 
   create_table "resource_blogs", force: :cascade do |t|
     t.string "title"
-    t.string "tag"
     t.integer "response_count"
     t.integer "click_count"
     t.integer "accessment"
@@ -45,7 +44,9 @@ ActiveRecord::Schema.define(version: 2020_11_27_073846) do
     t.integer "file_transfer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tag_id"
     t.index ["file_transfer_id"], name: "index_resource_blogs_on_file_transfer_id"
+    t.index ["tag_id"], name: "index_resource_blogs_on_tag_id"
     t.index ["user_id"], name: "index_resource_blogs_on_user_id"
   end
 
@@ -56,9 +57,14 @@ ActiveRecord::Schema.define(version: 2020_11_27_073846) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "text_blogs", force: :cascade do |t|
     t.string "title"
-    t.string "tag"
     t.text "content"
     t.integer "response_count"
     t.integer "click_count"
@@ -66,6 +72,8 @@ ActiveRecord::Schema.define(version: 2020_11_27_073846) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tag_id"
+    t.index ["tag_id"], name: "index_text_blogs_on_tag_id"
     t.index ["user_id"], name: "index_text_blogs_on_user_id"
   end
 
@@ -96,7 +104,6 @@ ActiveRecord::Schema.define(version: 2020_11_27_073846) do
 
   create_table "video_blogs", force: :cascade do |t|
     t.string "title"
-    t.string "tag"
     t.integer "response_count"
     t.integer "click_count"
     t.integer "accessment"
@@ -104,6 +111,8 @@ ActiveRecord::Schema.define(version: 2020_11_27_073846) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file_path"
+    t.integer "tag_id"
+    t.index ["tag_id"], name: "index_video_blogs_on_tag_id"
     t.index ["user_id"], name: "index_video_blogs_on_user_id"
   end
 
