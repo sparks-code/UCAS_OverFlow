@@ -114,8 +114,7 @@ rails generate migration remove_activation_token_from_users activation_token:str
 
 rails generate migration add_login_token_to_users login_token:string  
 rails generate migration remove_login_token_from_users login_token:string 
-rails generate migration add_login_digest_to_users login_digest:string  
-```
+rails generate migration add_login_digest_to_users login_digest:string 
 
 #数据库修改3
 新增tag库
@@ -139,3 +138,5 @@ rails generate model TextReply  reply:references text_blog:references
 rails generate model ResourceReply  reply:references resource_blog:references
 
 rails generate controller VideoReplys new edit
+```
+
