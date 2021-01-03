@@ -1,11 +1,11 @@
 <% provide(:title, "MOOC区：全部帖子") %>
 
-<h1><%= "MOOC区：全部帖子" %></h1>
 <%= render "share/flash_message.html"%> 
 
 <p id="notice"><%= notice %></p>
 
 <%= render partial: "show_blogs_list.html" %>
 
-
-<h7><%= link_to '发布视频', new_video_blog_path %><h7>
+<div class = "videoReleaseBottom" > 
+<%= link_to '发布视频', new_video_blog_path, :style=>"color:white", :class=>"btn btn-primary btn-lg "%>
+</div>
