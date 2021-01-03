@@ -39,11 +39,22 @@ class VideoBlogsController < ApplicationController
     @video_blog.click_count = 0
     @video_blog.accessment = 0
     unless request.get?
-      unless params[:video_blog][:file_path]
+      file = params[:video_blog][:file_path]
+      unless file
         flash.now[:danger] = "文件不能为空"
         render '/video_blogs/new'
         return
       end 
+      if file.size > 500000000
+        flash.now[:danger] = "文件不能大于500MB"
+        render '/video_blogs/new'
+        return
+      end
+      unless ["mp4"].include?(file.original_filename.chomp.split(".")[-1])
+        flash.now[:danger] = "文件格式只能为"+["mp4"].to_s
+        render '/video_blogs/new'
+        return
+      end
       filename = uploadfile(params[:video_blog][:file_path])
       @video_blog.file_path = filename
     end
@@ -56,11 +67,7 @@ class VideoBlogsController < ApplicationController
 
   def uploadfile(file)
     @filename = file.original_filename
-    # @file_size = @filename.size
-    # errors.add("", "贴图文件太大，应不能超过10MB") if @picture_size > 104875760  
-    # @file_type = @filename.content_type.chomp
-
-
+    @file_type = @filename.chomp.split(".")[-1]
     #设置目录路径，如果目录不存在，生成新目录
     FileUtils.mkdir("#{Rails.root}/app/assets/videos") unless File.exist?("#{Rails.root}/app/assets/videos")
     #写入文件
