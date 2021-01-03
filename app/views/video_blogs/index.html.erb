@@ -1,11 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h1>MOOC区</h1>
-<hr>
-<h2> 板块 </h2>
-<% @tags.each do |tag| %>
-  <td><%= link_to tag.name, show_tag_path(:id => tag.id) %></td>
-<% end %>
-<hr>
+
+<%= render partial: "video_blogs_navigation.html" %>
 
 <table>
   <thead>
@@ -27,10 +23,12 @@
         <td><%= video_blog.response_count %></td>
         <td><%= video_blog.click_count %></td>
         <td><%= video_blog.user.name %></td>
-        <td><%= link_to '显示', video_blog %></td>
+        <td><%= link_to '查看', video_blog %></td>
+        <!--注释
         <td><%= link_to '修改', edit_video_blog_path(video_blog) %></td>
         <td><%= link_to '删除', video_blog, method: :delete, data: { confirm: '确定要删除吗?' } %></td>
-      </tr>
+        -->
+        </tr>
     <% end %>
   </tbody>
 </table>

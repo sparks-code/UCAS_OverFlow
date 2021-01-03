@@ -6,6 +6,7 @@ class VideoBlogsController < ApplicationController
   # GET /video_blogs.json
   def index
     @video_blogs = VideoBlog.all
+    @tag_id = -1
     @tags = Tag.all
   end
 
@@ -22,6 +23,8 @@ class VideoBlogsController < ApplicationController
   def new
     @video_blog = VideoBlog.new
     @all_tags = Tag.get_all_tags
+    puts "######"
+    puts Tag.get_all_tags
   end
 
   # GET /video_blogs/1/edit
@@ -112,6 +115,7 @@ class VideoBlogsController < ApplicationController
   #GET '/video_blogs/tags/:id'
   def show_tag
     @tag_name = Tag.find(params[:id]).name
+    @tag_id = params[:id]
     @tag_video_blogs = VideoBlog.where("id = ?", params[:id])
   end
   

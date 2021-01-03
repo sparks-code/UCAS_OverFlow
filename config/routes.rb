@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   post  '/video_blogs/:id/reply', to: 'video_blogs#deal_reply', as: "video_replys"
   get '/video_blogs/tags/:id', to: 'video_blogs#show_tag', as: "show_tag"
+  #get 'show_tag/:id', to: 'video_blogs#show_tag', as: "show_tag"
 
 
   root 'users#hello'
