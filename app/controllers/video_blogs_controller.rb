@@ -50,10 +50,6 @@ class VideoBlogsController < ApplicationController
   end
 
   def uploadfile(file)
-    # if file == nil
-    #   flash.now[:error]="文件不能为空"
-    #   render "new"
-    # end
     @filename = file.original_filename
     errors.add("", "文件为空") if @filename.empty?
     # @file_size = @filename.size
@@ -138,6 +134,6 @@ class VideoBlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_blog_params
-      params.require(:video_blog).permit(:title, :tag_id)
+      params.require(:video_blog).permit(:title, :tag_id, :content)
     end
 end
