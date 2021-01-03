@@ -1,3 +1,6 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.3.0/video-js.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.3.0/video.min.js"></script>
+
 <html>
 <% provide(:title, @video_blog.title) %>
 <%= render "share/flash_message.html"%> 
@@ -34,8 +37,10 @@
       <br>
       <br>
       <br>
-      <%= video_tag @video_blog.file_path, :size => "320x240", :controls => true %>
-  
+      <%= video_tag @video_blog.file_path, autobuffer: true, :size => "320x240", :controls => true ,:class => "video-js vjs-big-play-centered",:id => "videoinner"%>
+      <!--video id="videoinner" class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
+          <source src="/home/alex/test.mp4" type="video/mp4">
+      <video-->
   
       <%= render "share/new_video_reply" %>
     </div>
@@ -43,4 +48,6 @@
 <!--%= link_to '编辑', edit_video_blog_path(@video_blog) %--> 
 
 </html>
-
+<script>
+  #var player = videojs('videoinner');
+</script>
