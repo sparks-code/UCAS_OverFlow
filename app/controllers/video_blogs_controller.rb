@@ -86,7 +86,7 @@ class VideoBlogsController < ApplicationController
   # DELETE /video_blogs/1
   # DELETE /video_blogs/1.json
   def destroy
-    ids = @video_blog.video_replys.collect{|x| x.reply.id} #some BUG with foreign key --zh
+    ids = @video_blog.video_replys.collect{|x| x.reply.id} #some BUG with foreign key:(--zh
     @video_blog.video_replys.each{|x| x.destroy}
     ids.each{|id| Reply.find(id).destroy}
     @video_blog.destroy
@@ -114,9 +114,10 @@ class VideoBlogsController < ApplicationController
   
   #GET '/video_blogs/tags/:id'
   def show_tag
+    @video_blogs = VideoBlog.where("id = ?", params[:id])
+    @tags = Tag.all
+    @tag_id = params[:id].to_i
     @tag_name = Tag.find(params[:id]).name
-    @tag_id = params[:id]
-    @tag_video_blogs = VideoBlog.where("id = ?", params[:id])
   end
   
   private
