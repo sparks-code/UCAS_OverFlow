@@ -129,6 +129,9 @@ rails destroy FileTransfer
 rails generate migration add_file_path_to_video_blogs file_path:string
 rails generate migration remove_file_transfer_id_from_video_blogs file_transfer_id:integer
 
+#向videoBlog增加content字段
+rails generate migration add_content_to_video_blogs content:string
+
 #数据库修改3
 修改resourceBlog
 rails generate migration add_file_path_to_resource_blogs file_path:string

@@ -31,6 +31,7 @@
                                     <td><%= blog.response_count %></td>
                                     <td><%= blog.click_count %></td>
                                     <td><%= blog.updated_at %></td>
+                                    <td><%= link_to '删除', blog, method: :delete, data: { confirm: '确定要删除吗?' } %></td>
                                 </tr>
                             <% end %>
                         <% end %>
