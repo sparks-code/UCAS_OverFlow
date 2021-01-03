@@ -23,8 +23,6 @@ class VideoBlogsController < ApplicationController
   def new
     @video_blog = VideoBlog.new
     @all_tags = Tag.get_all_tags
-    puts "######"
-    puts Tag.get_all_tags
   end
 
   # GET /video_blogs/1/edit
@@ -52,6 +50,10 @@ class VideoBlogsController < ApplicationController
   end
 
   def uploadfile(file)
+    # if file == nil
+    #   flash.now[:error]="文件不能为空"
+    #   render "new"
+    # end
     @filename = file.original_filename
     errors.add("", "文件为空") if @filename.empty?
     # @file_size = @filename.size
