@@ -114,7 +114,7 @@ class VideoBlogsController < ApplicationController
   
   #GET '/video_blogs/tags/:id'
   def show_tag
-    @video_blogs = VideoBlog.where("id = ?", params[:id])
+    @video_blogs = VideoBlog.where("tag_id = ?", params[:id])
     @tags = Tag.all
     @tag_id = params[:id].to_i
     @tag_name = Tag.find(params[:id]).name
