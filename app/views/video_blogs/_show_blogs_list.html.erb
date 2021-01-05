@@ -33,7 +33,7 @@
                                     <td><%= blog.response_count %></td>
                                     <td><%= blog.click_count %></td>
                                     <td><%= blog.updated_at %></td>
-                                    <!--<td><%= link_to '删除', blog, method: :delete, data: { confirm: '确定要删除吗?' } %></td>-->
+                                    <td><%= link_to '删除', blog, method: :delete, data: { confirm: '确定要删除吗?' } %></td>
                                     <%if current_user.id == blog.user_id%>    
                                         <td><%= link_to '修改', edit_video_blog_path(blog) %></td>
                                     <%end%>

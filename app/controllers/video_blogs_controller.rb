@@ -109,7 +109,7 @@ class VideoBlogsController < ApplicationController
   def deal_reply
     #set_video_blog
     @video_blog.response_count += 1
-    @video_blog.save
+    #@video_blog.save
     @reply = Reply.create(send_user_id: current_user.id,receive_user_id: params[:receiver_id], content: params[:content]) 
     @video_reply = @video_blog.video_replys.new
     @video_reply.reply_id = @reply.id
@@ -119,7 +119,7 @@ class VideoBlogsController < ApplicationController
     if @video_blog.save
       flash[:success] = "发表成功"
     else
-      flash[:danger] += "\n发表失败"
+      flash[:danger] = "发表失败"
     end
     redirect_to "/video_blogs/#{@video_blog.id}"
   end
