@@ -45,8 +45,8 @@ class VideoBlogsController < ApplicationController
         render '/video_blogs/new'
         return
       end 
-      if file.size > 500000000
-        flash.now[:danger] = "文件不能大于500MB"
+      if file.size > 40000000
+        flash.now[:danger] = "文件不能大于40MB"
         render '/video_blogs/new'
         return
       end
@@ -113,10 +113,13 @@ class VideoBlogsController < ApplicationController
     @reply = Reply.create(send_user_id: current_user.id,receive_user_id: params[:receiver_id], content: params[:content]) 
     @video_reply = @video_blog.video_replys.new
     @video_reply.reply_id = @reply.id
-    unless @video_blog.save
-      flash.now[:success] = "发表成功"
+    if params[:content].length<2 or params[:content].length>50
+      flash[:danger] = "回复长度必须在2-50字"
+    end
+    if @video_blog.save
+      flash[:success] = "发表成功"
     else
-      flash.now[:danger] = "发表失败"
+      flash[:danger] += "\n发表失败"
     end
     redirect_to "/video_blogs/#{@video_blog.id}"
   end
