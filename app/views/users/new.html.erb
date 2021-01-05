@@ -1,9 +1,24 @@
 <% provide(:title, '用户注册') %>
 <% provide(:submit_button_text, "创建用户") %>
 
-<h3>用户注册</h3>
-
 <%= render "share/user_write_error_messages.html"%>
-<%= render "form" %>
-<br>
-<%= link_to '返回首页', users_path %>
+<%= render "share/flash_message.html"%>
+
+<div class="col-sm-3 edit_row">
+    <div class="aTopAndBottom">
+        <h4 class="text-center"><span class="glyphicon glyphicon-home " style="float: left;"></span>
+            <div>用户注册</div>
+        </h4>
+    </div>
+
+    <%= render partial: 'form' %>
+
+    <div class="aTopAndBottom bottomSelect">
+        <table class="table">
+            <tr>
+                <td class="text-left"><%= link_to "返回登录页！", login_url ,class: "user_link" %></td>
+                <td class="text-right"> <%= link_to "前往首页", root_url ,class: "user_link" %></td>
+            </tr>
+        </table>
+    </div>
+</div>

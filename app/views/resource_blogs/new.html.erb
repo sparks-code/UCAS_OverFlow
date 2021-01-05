@@ -1,20 +1,34 @@
 <% provide(:title, '发布资源') %>
-<h1>发布资源</h1>
+<%= render "share/flash_message.html"%> 
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="blog_form_title">发布资源</h3>
+    </div>
+    <div class="panel-body">
+    <%= form_for @resource_blog,class: "form-inline", role:"form" do |f|%>
+        <div class="form-group">
+            <div class="input-group-addon"><%= f.label :title, "标题" %></div>
+            <%= f.text_field :title, class: 'form-control', placeholder: "请输入标题...(2-40字)"  %>
+        </div>
+        <div class="form-group">
+            <div class="input-group-addon"><%= f.label :content, "帖子内容" %></div>
+            <%= f.text_area :content, class: 'form-control', placeholder: "请输入内容...(5-500字)",rows: "6"  %>
+        </div>
+        <div class="form-group">
+            <div class="input-group-addon"><%= f.label :tag_id, "标签" %></div>
+            <%= f.select :tag_id, @all_tags, class: 'form-control', prompt: "请选择板块"%>
+        </div>
+        <div class="input-group-addon">
+            <div class="col-xs-6">
+                <%= f.file_field :file_path %>
+            </div>
+        </div>
+        <br><br>
+        <div class = "leftBottom" > 
+            <%= f.submit "发布帖子",class: "btn btn-primary" %>
+        </dev>
+    <% end %>
 
-<ul>
-<% @resource_blog.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-<% end %>
-</ul>
-
-<%= form_for @resource_blog do |f| %>
-    <%= f.label :title, "标题" %>
-    <%= f.text_field :title %>
-    <%= f.label :tag, "标签" %>
-    <%= f.text_field :tag %>
-    <%= f.label :file_path, "选择资源" %>
-    <%= f.file_field :file_path %>
-    <br><br>
-    <%= f.submit "发布" %>
-<% end %>
-<%= link_to 'Back', resource_blogs_path %>
+<div class = "centerBottom" > 
+<%= link_to '返回资源列表', resource_blogs_path, style: "color:white", class: "btn btn-primary"%>
+</div>

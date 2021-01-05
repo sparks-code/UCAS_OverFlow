@@ -1,4 +1,36 @@
-  <!-- 显示错误信息 -->
-  <% flash.each do |key, value| %>
-    <%= key %>：<%= value %>
-  <% end %>
+<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+<div id="user_flash_messages">
+    <template v-if="show_messages">
+        <%- if !flash.empty? %>
+          <div class="alert alert-warning">
+              <div class="container-fluid">
+                  <div class="col-sm-5">
+                    <ul>
+                        <% flash.each do |key, value| %>
+                          <li>
+                            <strong><%= key %></strong>：<%= value %>
+                          </li>
+                        <% end %>
+                    </ul>
+                  </div>
+                  <div class="col-sm-0" style="float:right">
+                      <button  @click = "show_messages=false" style="background-color:transparent;border-style:hidden;outline:none;">
+                          <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                  </div>
+                </div>
+            </div>
+        <% end -%>
+    </template>
+</div>
+
+<script type = "text/javascript">
+    var vm = new Vue({
+        el: '#user_flash_messages',
+        data: 
+        {
+            show_messages: true
+        }
+    });
+
+</script>

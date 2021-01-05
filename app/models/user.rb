@@ -3,17 +3,22 @@ class User < ApplicationRecord
     has_secure_password
 
     has_many :video_blogs
-    has_many :file_blogs
-    has_many :resource_blog
+    has_many :text_blogs
+    has_many :resource_blogs
 
     validates :password, confirmation: true, presence: true, allow_nil: true
  
     validates :name, presence: true, length: { minimum: 2, maximum: 50 }
-    validates :user_number, uniqueness: true, presence: true, format:{with: /\A(\d|x){15}\z/i, message: "student id (:user number) is not Invalid"}
-    validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}, uniqueness: { case_sensitive: false }
+    validates :user_number, allow_nil: true , uniqueness: true, presence: true, format:{with: /\A(\d|x){15}\z/i, message: "student id (:user number) is not Invalid"}
+    validates :email, allow_nil: true, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}, uniqueness: { case_sensitive: false }
+    validates :new_email, allow_nil: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Email Format Invalid"}
     validates :sex, presence: true, format: {with: /\A(男|女){1}\z/, message: "sex should be sure"}, allow_nil: true
 
-    attr_accessor :remember_token
+    attr_accessor :remember_token, :activation_token, :login_token
+
+    # 激活邮件回调
+    before_create :create_activation_token
+    before_save :downcase_email                 # 邮箱存储小写
 
     # 计算年级
     def grade
@@ -57,19 +62,11 @@ class User < ApplicationRecord
         end
     end
 
-    def translate_academy
-        if AcademyOrganization.find_by(:code_number=>self.organization)
-            return AcademyOrganization.find_by(:code_number=>self.organization).academy_name
-        else
-            return self.organization
-        end
-    end
-
     def translate_organization
         if AcademyOrganization.find_by(:code_number=>self.organization)
             return AcademyOrganization.find_by(:code_number=>self.organization).organization_name
         else
-            return self.organization
+            return self.organization+("(暂未收录)")
         end
     end
 
@@ -77,7 +74,7 @@ class User < ApplicationRecord
         if Project.find_by(:code_number=>self.project)
             return Project.find_by(:code_number=>self.project).project_name
         else
-            return self.project
+            return self.project+("(暂未收录)")
         end 
     end
 
@@ -93,14 +90,49 @@ class User < ApplicationRecord
     end
 
     # 核对用户提供的访问令牌是否有效
-    def authenticated?(remember_token)
-        # 判断数据库是否有hash值
-        if remember_token.nil? || remember_token.empty?
+    def authenticated?(attribute, token)
+        database_key_name = self.send("#{attribute}_digest")
+        if database_key_name.nil?
+          return false 
+        end
+        BCrypt::Password.new(database_key_name).is_password?(token)
+    end
+
+    def create_activation_token
+        self.activation_token = User.create_new_token
+        self.activation_digest = User.calculate_hash(self.activation_token)
+    end
+
+    # 邮箱验证登录
+    def create_login_token
+        self.login_token = User.create_new_token
+        self.login_digest = User.calculate_hash(self.login_token)
+        self.save
+    end
+
+    def disable_login_token
+        self.login_token = nil
+        self.login_digest = nil
+        self.save
+    end
+
+    def login_token_enable?
+        if self.login_token && self.login_digest && self.authenticated?(:login, self.login_token)
+            return true
+        else
             return false
         end
+    end
 
-        # 核对 hash值是否正确
-        if BCrypt::Password.new(self.remember_digest).is_password?(remember_token)
+    # 邮箱字母转化为小写
+    def downcase_email
+        if self.email
+            self.email = self.email.downcase
+        end
+    end
+
+    def is_effective?
+        if self.activated
             return true
         else
             return false

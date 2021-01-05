@@ -1,3 +1,5 @@
+Rails.application.routes.default_url_options[:host] = '127.0.0.1:3000'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -30,10 +32,21 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
+  # 邮箱配置
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_caching = true
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.163.com',
+    port:                 "25",
+    domain:               'www.163.com',
+    user_name:           'ucas_overflow@163.com', #比如我的是:'sai@163.com'
+    password:             'HENHZASQIBQZWXJI', #比如我的邮箱密码:'bugaosuni'
+    authentication:       :plain,
+    enable_starttls_auto: true
+  }
 
-  config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

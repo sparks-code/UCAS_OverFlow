@@ -1,9 +1,37 @@
-<%- if @user.errors %>
-    <%-  if @user.errors.full_messages.present? %>
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-        <% end %>
-        </ul>
-    <% end -%>
-<% end -%>
+<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+<div id="user_write_messages">
+    <template v-if="show_messages">
+            <%- if @user.errors %>
+                <%-  if @user.errors.full_messages.present? %>
+                    <div class="alert alert-warning">
+                        <div class="container-fluid">
+                            <div class="col-sm-5">
+                                <ul>
+                                    <% @user.errors.full_messages.each do |msg| %>
+                                        <li><%= msg %></li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                            <div class="col-sm-0" style="float:right">
+                                <button  @click = "show_messages=false" style="background-color:transparent;border-style:hidden;outline:none;">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <% end -%>
+            <% end -%>
+
+    </template>
+</div>
+
+<script type = "text/javascript">
+    var vm = new Vue({
+        el: '#user_write_messages',
+        data: 
+        {
+            show_messages: true
+        }
+    });
+
+</script>

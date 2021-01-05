@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_080825) do
+ActiveRecord::Schema.define(version: 2021_01_05_125603) do
 
   create_table "academy_organizations", force: :cascade do |t|
     t.string "code_number"
-    t.string "academy_name"
     t.string "organization_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,22 +36,30 @@ ActiveRecord::Schema.define(version: 2020_11_24_080825) do
 
   create_table "resource_blogs", force: :cascade do |t|
     t.string "title"
-    t.string "tag"
-    t.integer "response_count"
-    t.integer "click_count"
+    t.integer "response_count", default: 0
+    t.integer "click_count", default: 0
     t.integer "accessment"
     t.integer "user_id"
-   #t.integer "file_transfer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file_path"
-    #t.index ["file_transfer_id"], name: "index_resource_blogs_on_file_transfer_id"
+    t.integer "tag_id"
+    t.string "content"
+    t.index ["tag_id"], name: "index_resource_blogs_on_tag_id"
     t.index ["user_id"], name: "index_resource_blogs_on_user_id"
   end
 
   create_table "resource_replies", force: :cascade do |t|
-    t.string "reply"
-    t.string "references"
+    t.integer "reply_id"
+    t.integer "resource_blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reply_id"], name: "index_resource_replies_on_reply_id"
+    t.index ["resource_blog_id"], name: "index_resource_replies_on_resource_blog_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,19 +72,18 @@ ActiveRecord::Schema.define(version: 2020_11_24_080825) do
     t.integer "click_count"
     t.integer "accessment"
     t.integer "user_id"
-    t.integer "file_transfer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["file_transfer_id"], name: "index_text_blogs_on_file_transfer_id"
     t.index ["user_id"], name: "index_text_blogs_on_user_id"
   end
 
   create_table "text_replies", force: :cascade do |t|
-    t.string "reply"
-    t.string "references"
-    t.string "video_blog"
+    t.integer "reply_id"
+    t.integer "text_blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["reply_id"], name: "index_text_replies_on_reply_id"
+    t.index ["text_blog_id"], name: "index_text_replies_on_text_blog_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -85,31 +91,40 @@ ActiveRecord::Schema.define(version: 2020_11_24_080825) do
     t.string "user_number"
     t.string "email"
     t.string "sex"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
+    t.string "activation_digest"
+    t.boolean "activated", default: false
+    t.datetime "activated_at"
+    t.string "new_email"
+    t.string "login_digest"
   end
 
   create_table "video_blogs", force: :cascade do |t|
     t.string "title"
-    t.string "tag"
-    t.integer "response_count"
-    t.integer "click_count"
+    t.integer "response_count", default: 0
+    t.integer "click_count", default: 0
     t.integer "accessment"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file_path"
+    t.integer "tag_id"
+    t.string "content"
+    t.index ["tag_id"], name: "index_video_blogs_on_tag_id"
     t.index ["user_id"], name: "index_video_blogs_on_user_id"
   end
 
   create_table "video_replies", force: :cascade do |t|
-    t.string "reply"
-    t.string "references"
+    t.integer "reply_id"
+    t.integer "video_blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["reply_id"], name: "index_video_replies_on_reply_id"
+    t.index ["video_blog_id"], name: "index_video_replies_on_video_blog_id"
   end
 
 end

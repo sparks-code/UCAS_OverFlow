@@ -1,42 +1,45 @@
 <html>
+<% provide(:title, @resource_blog.title) %>
+<%= render "share/flash_message.html"%> 
 
-<head>
-  <title><%= @resource_blog.title %></title>
-</head>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>
+        <%= link_to '资源区', resource_blogs_path, style: "color:white" %>
+      </h2>
+    </div>
 
-<body>
-   <%= link_to "下载资源", :action => "down_file", :filename => @resource_blog.filename %>
-  <h3>资源信息</h3>
-  <HR>
-    <table border="0">
-      <tr>
-        <td>资源名称</td>
-        <td><%= @resource_blog.title %></td>
-      </tr>
-      <tr>
-        <td>上传用户：</td>
-        <td><%= @resource_blog.user.name %></td>
-      </tr>
-    
-      <tr>
-        <td>板块：</td>
-        <td><%= @resource_blog.tag %></td>
-      </tr>
 
-      <tr>
-        <td>回复数：</td>
-        <td><%= @resource_blog.response_count %></td>
-      </tr>
+    <div class="panel-body">
 
-      <tr>
-        <td>点击数：</td>
-        <td><%=  @resource_blog.click_count %></td>
-      </tr>
-    </table>
-</body>
+      <div>
+        <h2><%= @resource_blog.title %></h2>
+      </div>
+      <p class=leading><%= @resource_blog.content %></p>
 
-<%= link_to '编辑', edit_resource_blog_path(@resource_blog) %> |
-<%= link_to '返回', resource_blogs_path %>
+      <div class="col-sm-12 resourceBlogMessage">
+        <h5>作者：
+          <%= @resource_blog.user.name %>
+          &nbsp&nbsp板块：
+          <%= @resource_blog.tag.name %>
+          &nbsp&nbsp回复数：
+          <%= @resource_blog.response_count %>
+          &nbsp&nbsp点击数：
+          <%=  @resource_blog.click_count %>
+          &nbsp&nbsp
+          <%= @resource_blog.created_at %>
+        </h5>
+      </div> 
+      <br>
+      <br>
+      <br>
+      <br>
+      <%= link_to "下载资源", "#{@resource_blog.file_path}", download: '' %>
+  
+      <%= render "share/new_resource_reply" %>
+    </div>
+
+<!--%= link_to '编辑', edit_resource_blog_path(@resource_blog) %--> 
 
 </html>
 

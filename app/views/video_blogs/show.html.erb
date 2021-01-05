@@ -1,42 +1,53 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.3.0/video-js.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.3.0/video.min.js"></script>
+
 <html>
+<% provide(:title, @video_blog.title) %>
+<%= render "share/flash_message.html"%> 
 
-<head>
-  <title><%= @video_blog.title %></title>
-</head>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>
+        <%= link_to '视频区', video_blogs_path, style: "color:white" %>
+      </h2>
+    </div>
 
-<body>
-  <%= video_tag @video_blog.file_path, :size => "320x240", :controls => true %>
-  <h3>视频信息</h3>
-  <HR>
-    <table border="0">
-      <tr>
-        <td>视频标题</td>
-        <td><%= @video_blog.title %></td>
-      </tr>
-      <tr>
-        <td>上传用户：</td>
-        <td><%= @video_blog.user.name %></td>
-      </tr>
-    
-      <tr>
-        <td>板块：</td>
-        <td><%= @video_blog.tag %></td>
-      </tr>
 
-      <tr>
-        <td>回复数：</td>
-        <td><%= @video_blog.response_count %></td>
-      </tr>
+    <div class="panel-body">
 
-      <tr>
-        <td>点击数：</td>
-        <td><%=  @video_blog.click_count %></td>
-      </tr>
-    </table>
-</body>
+      <div>
+        <h2><%= @video_blog.title %></h2>
+      </div>
+      <p class=leading><%= @video_blog.content %></p>
 
-<%= link_to '编辑', edit_video_blog_path(@video_blog) %> |
-<%= link_to '返回', video_blogs_path %>
+      <div class="col-sm-12 videoBlogMessage">
+        <h5>作者：
+          <%= @video_blog.user.name %>
+          &nbsp&nbsp板块：
+          <%= @video_blog.tag.name %>
+          &nbsp&nbsp回复数：
+          <%= @video_blog.response_count %>
+          &nbsp&nbsp点击数：
+          <%=  @video_blog.click_count %>
+          &nbsp&nbsp
+          <%= @video_blog.created_at %>
+        </h5>
+      </div> 
+      <br>
+      <br>
+      <br>
+      <br>
+      <%= video_tag @video_blog.file_path, :autoplay=> false, :size => "480x320", :controls => true ,:class => "video-js vjs-big-play-centered",:id => "videoinner"%>
+      <!--video id="videoinner" class="video-js" controls preload="none" width="640" height="264"
+          <source src="/home/alex/test.mp4" type="video/mp4">
+      <video-->
+  
+      <%= render "share/new_video_reply" %>
+    </div>
+
+<!--%= link_to '编辑', edit_video_blog_path(@video_blog) %--> 
 
 </html>
-
+<script>
+  #var player = videojs('videoinner');
+</script>

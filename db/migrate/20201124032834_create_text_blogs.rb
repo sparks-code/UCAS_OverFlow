@@ -8,7 +8,6 @@ class CreateTextBlogs < ActiveRecord::Migration[5.2]
       t.integer :click_count
       t.integer :accessment
       t.references :user, foreign_key: true
-      t.references :file_transfer, foreign_key: true
 
       t.timestamps
     end

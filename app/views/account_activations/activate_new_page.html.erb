@@ -1,0 +1,17 @@
+<% provide(:title, "等待邮箱验证") %>
+
+<%= render "share/flash_message.html"%>
+
+<div class="col-sm-3 my_row">
+    <div class="aTopAndBottom">
+        <h4 class="text-center"><span class="glyphicon glyphicon-star-empty " style="color:  rgb(107, 231, 35);"></span><div style="float: center;color:  rgb(107, 231, 35);">等待邮箱验证</div></h4>
+    </div>
+
+    <div class="panel-body">
+        <p style="color: white;">激活邮件已经发送到您的新邮箱，将在您完成激活后生效，在此之前您的原邮箱将仍然为指定邮箱</p>
+    </div>
+
+    <div class="aTopAndBottom bottomSelect">
+        <%= link_to "返回登录页", login_url,class: "user_link" %>
+    </div>
+</div>
