@@ -6,7 +6,7 @@ class User < ApplicationRecord
     has_many :text_blogs
     has_many :resource_blog
 
-    validates :password, confirmation: true, presence: true, allow_nil: true
+    validates :password, confirmation: true, presence: true, allow_nil: true, length: {minimum: 9}
  
     validates :name, presence: true, length: { minimum: 2, maximum: 50 }
     validates :user_number, allow_nil: true , uniqueness: true, presence: true, format:{with: /\A(\d|x){15}\z/i, message: "student id (:user number) is not Invalid"}
