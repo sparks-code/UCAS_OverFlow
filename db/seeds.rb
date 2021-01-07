@@ -20,7 +20,7 @@ require 'roo'
     User.create!(name: name ,user_number: user_number, email: email,sex: sex , password: password, password_confirmation: password,activated: activated)
 end
 
-User.create!(name: "余甜" ,user_number: "202028015059033", email: "a_flying_fish@outlook.com",sex: "男" , password: "123", password_confirmation: "123",activated: true, admin: true)
+User.create!(name: "余甜" ,user_number: "202028015059033", email: "a_flying_fish@outlook.com",sex: "男" , password: "123456789", password_confirmation: "123456789",activated: true, admin: true)
 
 # 初始化学院
 xlsx = Roo::Excelx.new(File.expand_path('./db/school_info/academy_organization.xlsx'))
