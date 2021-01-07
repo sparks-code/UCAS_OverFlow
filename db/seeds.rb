@@ -14,7 +14,7 @@ require 'roo'
     num = "%03d"%(n+1)
     user_number="#{rand(2019..2022)}#{rand(1..2)}#{rand(80100..80200)}#{'%02d'%rand(1..60)}#{num}"
     email = "test_#{n+1}@eamil.com"
-    password = "password"
+    password = "passwords"
     sex = rand(1..2)==1 ? "男" : "女"
     activated=true
     User.create!(name: name ,user_number: user_number, email: email,sex: sex , password: password, password_confirmation: password,activated: activated)
