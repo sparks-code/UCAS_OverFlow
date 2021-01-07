@@ -1,9 +1,9 @@
 class ResourceBlogsController < ApplicationController
+  include SessionsHelper
   #确保已经登录
   before_action :ensure_logged_in
   #将页面设置为当前用户的参数
-  before_action :set_resource_blog, only: [:show, :edit, :update, :destroy]
-  include SessionsHelper
+  before_action :set_resource_blog, only: [:show, :edit, :update, :destroy, :deal_reply]
   # GET /resource_blogs
   # GET /resource_blogs.json
   def index
@@ -16,11 +16,16 @@ class ResourceBlogsController < ApplicationController
   # GET /resource_blogs/1
   # GET /resource_blogs/1.json
   def show
-    @resource_blog = ResourceBlog.find(params[:id])
-    #show时点击数+1
-    @resource_blog.click_count += 1
-    @resource_blog.save
-    @feed_items = @resource_blog.feed.paginate(page: params[:page])
+    if Integer(params[:id]) < 0
+      down_path = "#{Rails.root}/app/assets/resources/#{@resource_blog.file_path}"
+      send_file  down_path unless down_path.blank?  
+    else
+      @resource_blog = ResourceBlog.find(params[:id])
+      #show时点击数+1
+      @resource_blog.click_count += 1
+      @resource_blog.save
+      @feed_items = @resource_blog.feed.paginate(page: params[:page]) 
+    end
   end
 
   # GET /resource_blogs/new
@@ -41,7 +46,7 @@ class ResourceBlogsController < ApplicationController
     #@resource_blog = ResourceBlog.new(resource_blog_params)
     @all_tags = Tag.get_all_tags
     @resource_blog = current_user.resource_blogs.new(resource_blog_params)
-    @resource_blog.response_count = 0
+    @resource_blog.response_count = 1
     @resource_blog.click_count = 0
     @resource_blog.accessment = 0
     unless request.get?
@@ -58,9 +63,14 @@ class ResourceBlogsController < ApplicationController
         render '/resource_blogs/new'
         return
       end
-      #保存文件路径和文件名
+      #保存文件路径、文件名和大小
       filename = uploadfile(params[:resource_blog][:file_path])
       @resource_blog.file_path = filename
+      file_size = file.size/1000000
+      if Integer(file_size) == 0
+        file_size = '<1MB'
+      end
+      @resource_blog.file_size = "#{file_size}MB"
     end
     #保存成功，转到文件所在页面
     if @resource_blog.save
@@ -99,12 +109,10 @@ class ResourceBlogsController < ApplicationController
     return @filename
   end
 
+  # GET '/resource_blogs/down_file'
   def down_file
- 
-    @resource_blog = ResourceBlog.find(params[:id])
-    down_path = @resource_blog.file_path
-    send_file  down_path unless  down_path.blank?  
- 
+    down_path = "#{Rails.root}/app/assets/resources/#{params[:filename]}"
+    send_file  down_path unless down_path.blank?   
   end  
 
   # DELETE /resource_blogs/1
@@ -116,10 +124,11 @@ class ResourceBlogsController < ApplicationController
     ids.each{|id| Reply.find(id).destroy}
     @resource_blog.destroy
     respond_to do |format|
-      format.html { redirect_to resource_blogs_url, notice: '删除成功！' }
+      format.html { redirect_to '/user_resources', notice: '删除成功！' }
       format.json { head :no_content }
     end
   end
+
   # POST /resource_blogs/1/reply
   def deal_reply
   #set_resource_blog 发表评论，计数+1
@@ -158,7 +167,12 @@ class ResourceBlogsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_resource_blog
-      @resource_blog = ResourceBlog.find(params[:id])
+      if Integer(params[:id]) < 0
+        real_id = Integer(params[:id]) * -1
+        @resource_blog = ResourceBlog.find(real_id.to_s)
+      else
+        @resource_blog = ResourceBlog.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.

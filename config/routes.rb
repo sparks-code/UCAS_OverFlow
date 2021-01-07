@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   
   resources :resource_blogs
-  get "resource_blogs/down_file"
+  
   resources :text_blogs
   resources :video_blogs
 
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 #################################################################################
   post  '/resource_blogs/:id/reply', to: 'resource_blogs#deal_reply', as: "resource_replys" 
   get '/resource_blogs/tags/:id', to: 'resource_blogs#show_tag', as: "resource_show_tag"
+  #get '/resource_blogs/down_file/:file_name', to: 'resource_blogs#down_file', as: "down_file"
   root 'users#hello'
   # 主页
   get '/home', to: 'static_pages#home'

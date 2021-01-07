@@ -15,26 +15,24 @@
       <div>
         <h2><%= @resource_blog.title %></h2>
       </div>
-      <p class=leading><%= @resource_blog.content %></p>
 
       <div class="col-sm-12 resourceBlogMessage">
         <h5>作者：
           <%= @resource_blog.user.name %>
           &nbsp&nbsp板块：
           <%= @resource_blog.tag.name %>
-          &nbsp&nbsp回复数：
-          <%= @resource_blog.response_count %>
+          &nbsp&nbsp文件大小：
+          <%= @resource_blog.file_size %>
           &nbsp&nbsp点击数：
           <%=  @resource_blog.click_count %>
-          &nbsp&nbsp
+          &nbsp&nbsp发布时间：
           <%= @resource_blog.created_at %>
         </h5>
       </div> 
-      <br>
-      <br>
-      <br>
-      <br>
-      <%= link_to "下载资源", "#{@resource_blog.file_path}", download: '' %>
+      
+      <p class=leading><br><%= @resource_blog.content %><br></p>
+  
+      <%= link_to "下载资源", "/resource_blogs/#{@resource_blog.id * -1}", style: "color:white", class: "btn btn-primary"  %>
   
       <%= render "share/new_resource_reply" %>
     </div>

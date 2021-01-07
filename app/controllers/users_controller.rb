@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show_user_resourceblogs
-    @blogs = current_user.resource_blog.paginate(page: params[:page], per_page: 12)
+    @blogs = current_user.resource_blogs.paginate(page: params[:page], per_page: 12)
     
     @activate_type=ActivateType::MyResourceBlogs
   end
