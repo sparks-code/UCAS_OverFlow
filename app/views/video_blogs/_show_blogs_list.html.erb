@@ -42,6 +42,9 @@
                             <% end %>
                         <% end %>
                     </tbody>
+                    <% if @video_blogs %>
+                        <%= will_paginate @video_blogs %>
+                     <% end %>
                 </table>
 
                 <% if @blogs %>

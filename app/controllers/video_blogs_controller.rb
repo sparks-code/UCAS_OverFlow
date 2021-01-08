@@ -5,7 +5,7 @@ class VideoBlogsController < ApplicationController
   # GET /video_blogs
   # GET /video_blogs.json
   def index
-    @video_blogs = VideoBlog.all
+    @video_blogs = VideoBlog.all.paginate(page: params[:page], per_page: 12)
     @tag_id = -1
     @tags = Tag.all
   end
@@ -16,7 +16,8 @@ class VideoBlogsController < ApplicationController
     @video_blog = VideoBlog.find(params[:id])
     @video_blog.click_count += 1
     @video_blog.save
-    @feed_items = @video_blog.feed.paginate(page: params[:page])
+    @feed_items = @video_blog.feed.paginate(page: params[:page], per_page: 12)
+
   end
 
   # GET /video_blogs/new
@@ -126,7 +127,7 @@ class VideoBlogsController < ApplicationController
   
   #GET '/video_blogs/tags/:id'
   def show_tag
-    @video_blogs = VideoBlog.where("tag_id = ?", params[:id])
+    @video_blogs = VideoBlog.where("tag_id = ?", params[:id]).paginate(page: params[:page], per_page: 12)
     @tags = Tag.all
     @tag_id = params[:id].to_i
     @tag_name = Tag.find(params[:id]).name
