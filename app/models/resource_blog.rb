@@ -1,4 +1,4 @@
 class ResourceBlog < ApplicationRecord
   belongs_to :user
-  belongs_to :file_transfer
+  belongs_to :tag
 end
