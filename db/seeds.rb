@@ -64,7 +64,7 @@ all_content = ["一个深入浅出的小视频，看了很有收货","讲得很�
 end
 #generate video_reply
 VideoBlog.all.each do |video_blog|
-    10.times do |dumpy|
+    20.times do |dumpy|
         user = User.order("RANDOM()").first
         video_blog.response_count += 1
         reply = Reply.new
