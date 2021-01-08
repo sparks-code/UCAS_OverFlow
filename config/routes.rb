@@ -1,4 +1,4 @@
-Rails.application.routes.default_url_options[:host] = "127.0.0.1:3000"
+Rails.application.routes.default_url_options[:host] = "112.125.88.70:3000"
 
 Rails.application.routes.draw do
 

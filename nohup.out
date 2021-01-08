@@ -1,0 +1,285 @@
+/var/lib/gems/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/middleware/stack.rb:37: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+/var/lib/gems/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/middleware/static.rb:111: warning: The called method `initialize' is defined here
+=> Booting Puma
+=> Rails 5.2.4.4 application starting in development 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.6 (ruby 2.7.0-p0), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: development
+* Listening on tcp://0.0.0.0:3000
+Use Ctrl-C to stop
+Started GET "/users" for 117.151.44.253 at 2021-01-08 14:05:37 +0800
+Cannot render console from 117.151.44.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /var/lib/gems/2.7.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#index as HTML
+/var/lib/gems/2.7.0/gems/activesupport-5.2.4.4/lib/active_support/messages/rotator.rb:28: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+/var/lib/gems/2.7.0/gems/activesupport-5.2.4.4/lib/active_support/messages/rotator.rb:6: warning: The called method `initialize' is defined here
+/var/lib/gems/2.7.0/gems/activemodel-5.2.4.4/lib/active_model/type/integer.rb:13: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+/var/lib/gems/2.7.0/gems/activemodel-5.2.4.4/lib/active_model/type/value.rb:8: warning: The called method `initialize' is defined here
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:26
+/var/lib/gems/2.7.0/gems/actionview-5.2.4.4/lib/action_view/view_paths.rb:11: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+/var/lib/gems/2.7.0/gems/actionview-5.2.4.4/lib/action_view/lookup_context.rb:128: warning: The called method `template_exists?' is defined here
+  Rendering users/index.html.erb within layouts/application
+  Rendered share/_flash_message.html.erb (0.5ms)
+  Rendered users/_user_navigation.html.erb (1.2ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 12], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:33
+  [1m[36mAcademyOrganization Load (0.2ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80167"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80167"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "21"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "21"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80151"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80151"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "26"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "26"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80117"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "12"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "12"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80129"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80129"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "14"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "14"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80138"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80138"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "54"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80169"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "11"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "11"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80194"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80194"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "28"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "28"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80196"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "20"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "20"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80111"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "24"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "24"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80137"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "09"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "09"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80171"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80171"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "55"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80182"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80182"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "44"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "44"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+/var/lib/gems/2.7.0/gems/activerecord-5.2.4.4/lib/active_record/relation/delegation.rb:132: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+/var/lib/gems/2.7.0/gems/activerecord-5.2.4.4/lib/active_record/relation.rb:25: warning: The called method `initialize' is defined here
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:59
+/var/lib/gems/2.7.0/gems/actionview-5.2.4.4/lib/action_view/helpers/translation_helper.rb:99: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+/var/lib/gems/2.7.0/gems/i18n-1.8.5/lib/i18n.rb:195: warning: The called method `translate' is defined here
+  Rendered users/index.html.erb within layouts/application (217.6ms)
+Completed 200 OK in 393ms (Views: 367.4ms | ActiveRecord: 4.2ms)
+
+
+/var/lib/gems/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/middleware/cookies.rb:647: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+/var/lib/gems/2.7.0/gems/activesupport-5.2.4.4/lib/active_support/message_encryptor.rb:150: warning: The called method `encrypt_and_sign' is defined here
+/var/lib/gems/2.7.0/gems/activesupport-5.2.4.4/lib/active_support/message_encryptor.rb:175: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+/var/lib/gems/2.7.0/gems/activesupport-5.2.4.4/lib/active_support/messages/metadata.rb:17: warning: The called method `wrap' is defined here
+Started GET "/" for 117.151.44.253 at 2021-01-08 14:05:41 +0800
+Cannot render console from 117.151.44.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#hello as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:26
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 117.151.44.253 at 2021-01-08 14:05:41 +0800
+Cannot render console from 117.151.44.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#hello as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:26
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users" for 117.151.44.253 at 2021-01-08 14:05:45 +0800
+Cannot render console from 117.151.44.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:26
+  Rendering users/index.html.erb within layouts/application
+  Rendered share/_flash_message.html.erb (0.4ms)
+  Rendered users/_user_navigation.html.erb (1.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 12], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:33
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80167"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80167"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "21"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "21"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80151"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80151"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "26"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "26"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80117"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "12"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "12"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80129"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80129"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "14"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "14"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80138"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80138"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "54"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80169"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "11"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "11"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80194"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80194"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "28"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "28"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80196"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "20"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "20"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80111"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "24"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "24"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80137"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "09"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "09"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80171"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80171"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "55"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80182"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80182"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "44"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "44"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:59
+  Rendered users/index.html.erb within layouts/application (24.6ms)
+Completed 200 OK in 51ms (Views: 47.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users/100" for 117.151.44.253 at 2021-01-08 14:05:46 +0800
+Cannot render console from 117.151.44.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"100"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:26
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:40
+  Rendering users/show.html.erb within layouts/application
+  Rendered share/_flash_message.html.erb (0.4ms)
+  Rendered users/_user_navigation.html.erb (1.1ms)
+  [1m[36mAcademyOrganization Load (0.1ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80150"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:66
+  [1m[36mCACHE AcademyOrganization Load (0.0ms)[0m  [1m[34mSELECT  "academy_organizations".* FROM "academy_organizations" WHERE "academy_organizations"."code_number" = ? LIMIT ?[0m  [["code_number", "80150"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:67
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "59"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:74
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."code_number" = ? LIMIT ?[0m  [["code_number", "59"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:75
+  Rendered users/show.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 33ms (Views: 29.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 61.151.206.16 at 2021-01-08 14:06:05 +0800
+Cannot render console from 61.151.206.16! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#hello as */*
+Redirected to http://112.125.88.70:3000/login
+Filter chain halted as :ensure_logged_in rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2021-01-08 14:06:21 +0800 ===
+- Goodbye!
+Exiting
+/var/lib/gems/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/middleware/stack.rb:37: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+/var/lib/gems/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/middleware/static.rb:111: warning: The called method `initialize' is defined here
+A server is already running. Check /root/UCAS_OverFlow/tmp/pids/server.pid.
+=> Booting Puma
+=> Rails 5.2.4.4 application starting in development 
+=> Run `rails server -h` for more startup options
+Exiting

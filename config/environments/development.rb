@@ -1,4 +1,4 @@
-Rails.application.routes.default_url_options[:host] = '127.0.0.1:3000'
+Rails.application.routes.default_url_options[:host] = '112.125.88.70:3000'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -37,14 +37,25 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = true
+  #config.action_mailer.smtp_settings = {
+  #  address:              'smtp.163.com',
+  #  port:                 "25",
+  #  domain:               'www.163.com',
+  #  user_name:           'ucas_overflow@163.com', #比如我的是:'sai@163.com'
+  #  password:             'HENHZASQIBQZWXJI', #比如我的邮箱密码:'bugaosuni'
+  #  authentication:       :plain,
+  #  enable_starttls_auto: true
+  #}
+
   config.action_mailer.smtp_settings = {
-    address:              'smtp.163.com',
-    port:                 "25",
-    domain:               'www.163.com',
-    user_name:           'ucas_overflow@163.com', #比如我的是:'sai@163.com'
-    password:             'HENHZASQIBQZWXJI', #比如我的邮箱密码:'bugaosuni'
-    authentication:       :plain,
-    enable_starttls_auto: true
+    :address                => 'smtp.163.com',
+    :port                   => 465,
+    :authentication         => :plain,
+    :user_name              => 'ucas_overflow@163.com',      #ENV['SENDGRID_USERNAME'],
+    :password               => 'HENHZASQIBQZWXJI'  ,      #ENV['SENDGRID_PASSWORD'],
+    :domain                 => 'www.163.com',
+    :enable_starttls_auto   => true,
+    :ssl                    => true
   }
 
 
