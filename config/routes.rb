@@ -41,8 +41,9 @@ Rails.application.routes.draw do
   #get 'show_tag/:id', to: 'video_blogs#show_tag', as: "show_tag"
 
 
-  root 'users#hello'
+  # root 'users#hello'
   # 主页
+  root 'static_pages#home'
   get '/home', to: 'static_pages#home'
 end
 

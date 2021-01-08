@@ -15,6 +15,7 @@ gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass'
+gem 'ajax-datatables-rails'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
