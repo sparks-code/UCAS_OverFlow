@@ -1,44 +1,42 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @text_blog.title) %>
+<%= render "share/flash_message.html"%> 
 
-<p>
-  <strong>Title:</strong>
-  <%= @text_blog.title %>
-</p>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>
+        <%= link_to '讨论区', text_blogs_path, style: "color:white" %>
+      </h2>
+    </div>
 
-<p>
-  <strong>Tag:</strong>
-  <%= @text_blog.tag %>
-</p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @text_blog.content %>
-</p>
+    <div class="panel-body">
 
-<p>
-  <strong>Response count:</strong>
-  <%= @text_blog.response_count %>
-</p>
+      <div>
+        <h2><%= @text_blog.title %></h2>
+      </div>
 
-<p>
-  <strong>Click count:</strong>
-  <%= @text_blog.click_count %>
-</p>
-
-<p>
-  <strong>Accessment:</strong>
-  <%= @text_blog.accessment %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @text_blog.user %>
-</p>
-
-<p>
-  <strong>File transfer:</strong>
-  <%= @text_blog.file_transfer %>
-</p>
-
-<%= link_to 'Edit', edit_text_blog_path(@text_blog) %> |
-<%= link_to 'Back', text_blogs_path %>
+      <div class="col-sm-12 textBlogMessage">
+        <h5>作者：
+          <%= @text_blog.user.name %>
+          &nbsp&nbsp板块：
+          <%= @text_blog.tag.name %>
+          &nbsp&nbsp回复数：
+          <%= @text_blog.response_count %>
+          &nbsp&nbsp点击数：
+          <%=  @text_blog.click_count %>
+          &nbsp&nbsp
+          <%= @text_blog.created_at %>
+        </h5>
+      </div> 
+      <br>
+      <br>
+      <br>
+      <div style = "color:blue">  
+        <h4><%= @text_blog.content %></h4>
+      </div>
+     
+      <br>
+      <br>
+      <br>
+    <%= render "share/new_text_reply" %>
+</div>

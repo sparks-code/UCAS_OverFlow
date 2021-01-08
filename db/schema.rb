@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 2020_12_12_125348) do
   create_table "text_blogs", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.integer "response_count", default: 0
-    t.integer "click_count", default: 0
+    t.integer "response_count"
+    t.integer "click_count"
     t.integer "accessment"
     t.integer "user_id"
     t.datetime "created_at", null: false

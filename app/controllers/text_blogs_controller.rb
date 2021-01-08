@@ -5,7 +5,7 @@ class TextBlogsController < ApplicationController
   # GET /text_blogs
   # GET /text_blogs.json
   def index
-    @text_blogs = TextBlog.all
+    @text_blogs = TextBlog.all.paginate(page: params[:page],per_page: 12)
     @tag_id = -1
     @tags = Tag.all
   end
@@ -16,7 +16,7 @@ class TextBlogsController < ApplicationController
     @text_blog = TextBlog.find(params[:id])
     @text_blog.click_count += 1
     @text_blog.save
-    @feed_items = @text_blog.feed.paginate(page: params[:page])
+    @feed_items = @text_blog.feed.paginate(page: params[:page],per_page: 12)
   end
 
   # GET /text_blogs/new
@@ -100,7 +100,7 @@ class TextBlogsController < ApplicationController
   end
 
   def show_tag
-    @text_blogs = textBlog.where("tag_id = ?", params[:id])
+    @text_blogs = TextBlog.where("tag_id = ?", params[:id]).paginate(page: params[:page], per_page: 12)
     @tags = Tag.all
     @tag_id = params[:id].to_i
     @tag_name = Tag.find(params[:id]).name
@@ -121,6 +121,6 @@ class TextBlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def text_blog_params
-      params.require(:text_blog).permit(:title, :tag, :content, :response_count, :click_count, :accessment, :user_id, :file_transfer_id)
+      params.require(:text_blog).permit(:title, :tag_id, :content)
     end
 end
