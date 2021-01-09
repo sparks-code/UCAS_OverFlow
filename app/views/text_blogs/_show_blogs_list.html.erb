@@ -1,0 +1,54 @@
+<div class="container-fluid ">
+    <%= render partial: "text_blogs_navigation.html" %>
+
+
+    <div class="col-sm-11">
+        <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+                <h3><%= yield(:title) %></h3>
+            </div>
+
+            <div class="panel-body">
+                <table class="table table-responsive table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th><font size="3">标题</th>
+                            <th><font size="3">发帖人</th>
+                            <th><font size="3">板块</th>
+                            <th><font size="3">回复数</th>
+                            <th><font size="3">点击数</th>
+                            <th><font size="3">更新时间</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% if @text_blogs %>
+                            <% @text_blogs.each do |blog| %>
+                                <tr>
+                                    <td><%= link_to blog.title, blog %></td>
+                                    <td><%= blog.user.name %></td>
+                                    <td><%= blog.tag.name %></td>
+                                    <td><%= blog.response_count %></td>
+                                    <td><%= blog.click_count %></td>
+                                    <td><%= blog.updated_at %></td>
+                                    <!--td><%= link_to '删除', blog, method: :delete, data: { confirm: '确定要删除吗?' } %></td-->
+                                    <%if current_user.id == blog.user_id%>    
+                                        <td><%= link_to '修改', edit_text_blog_path(blog) %></td>
+                                    <%end%>
+                                    
+                                </tr>
+                            <% end %>
+                        <% end %>
+                    </tbody>
+                    <% if @text_blogs %>
+                        <%= will_paginate @text_blogs %>
+                     <% end %>
+                </table>
+
+                <% if @blogs %>
+                    <%= will_paginate @blogs %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

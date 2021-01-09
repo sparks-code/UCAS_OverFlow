@@ -1,0 +1,7 @@
+<% provide(:title, '讨论区：'+@tag_name+"板") %>
+
+<%= render "share/flash_message.html"%> 
+
+<p id="notice"><%= notice %></p>
+
+<%= render partial: 'show_blogs_list.html' %>   

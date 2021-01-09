@@ -41,13 +41,19 @@ end
 Tag.create(name: "数学")
 Tag.create(name: "计算机")
 Tag.create(name: "日常生活")
-
+Tag.create(name: "情感天地")
 
 #generate video_blog
 all_titles = ["震惊，程序员必看","惊了，看过的码农都说好","收获很大"]
 all_content = ["一个深入浅出的小视频，看了很有收货","讲得很有道理我一遍就理解了"]
+
+
+
+#generate text_blog
+all_text_titles = ["夜深了，说个故事","分手要怎么办","今年成绩是满绩哈哈哈","求救！！！！！","招聘","说说今天发生的一件事，震惊我妈"]
+all_text_content = ["爱你~","我是帅哥","故事是这样的"]
 20.times do |dummy|
-    (1..3).each do |tag_id|
+    (1..4).each do |tag_id|
         user = User.order("RANDOM()").first
         all_tags = Tag.all.each{|x|x.id}
         video_blog = user.video_blogs.new
@@ -75,5 +81,37 @@ VideoBlog.all.each do |video_blog|
         video_reply = video_blog.video_replys.new
         video_reply.reply_id = reply.id
         video_blog.save
+    end
+end 
+
+20.times do |dummy|
+    (1..4).each do |tag_id|
+        user = User.order("RANDOM()").first
+        all_tags = Tag.all.each{|x|x.id}   
+        text_blog = user.text_blogs.new
+        text_blog.title = all_text_titles.sample
+        text_blog.content = all_text_content.sample
+        text_blog.user_id = user.id
+        text_blog.response_count = 0
+        text_blog.click_count = 0
+        text_blog.accessment = 0
+        text_blog.tag_id = tag_id# 如果增加板块数目则要改动
+        text_blog.save
+    end
+end
+
+#generate text_reply
+TextBlog.all.each do |text_blog|
+    20.times do |dumpy|
+        user = User.order("RANDOM()").first
+        text_blog.response_count += 1
+        reply = Reply.new
+        reply.send_user_id = user.id
+        reply.receive_user_id = text_blog.user_id
+        reply.content = ["唉我也是","有酒吗","明白了"].sample
+        reply.save
+        text_reply = text_blog.text_replys.new
+        text_reply.reply_id = reply.id
+        text_blog.save
     end
 end    
