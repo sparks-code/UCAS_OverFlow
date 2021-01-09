@@ -32,7 +32,17 @@
                                     <td><%= blog.updated_at %></td>
 
                                     <% if current_user.id == blog.user_id %>
-                                        <td><%= link_to '修改', edit_video_blog_path(blog) %></td>
+                                        <% if @activate_type && @activate_type==ActivateType::MyVideosBlog %>
+                                            <td><%= link_to '修改', edit_video_blog_path(blog) %></td>
+                                        <% end %>
+
+                                        <% if @activate_type && @activate_type==ActivateType::MyTextBlogs %>
+                                            <td><%= link_to '修改', edit_text_blog_path(blog) %></td>
+                                        <% end %>
+
+                                        <% if @activate_type && @activate_type==ActivateType::MyResourceBlogs %>
+                                            <td><%= link_to '修改', edit_resource_blog_path(blog) %></td>
+                                        <% end %>
                                     <% end %>
 
                                     <% if current_user.admin or current_user.id == blog.user_id %>

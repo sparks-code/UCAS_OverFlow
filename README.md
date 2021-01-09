@@ -134,5 +134,5 @@ rails generate migration add_login_digest_to_users login_digest:string
 bundle install
 rails db:migrate
 rails db:seed
-rails s
+rails s -b 0.0.0.0
 ```
