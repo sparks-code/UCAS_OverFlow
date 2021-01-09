@@ -85,6 +85,7 @@ class ResourceBlogsController < ApplicationController
   # PATCH/PUT /resource_blogs/1
   # PATCH/PUT /resource_blogs/1.json
   def update
+    @all_tags = Tag.get_all_tags
     respond_to do |format|
       if @resource_blog.update(resource_blog_params)
         format.html { redirect_to @resource_blog, notice: '文件已成功更新！' }

@@ -65,6 +65,7 @@ class TextBlogsController < ApplicationController
   # PATCH/PUT /text_blogs/1
   # PATCH/PUT /text_blogs/1.json
   def update
+    @all_tags = Tag.get_all_tags
     respond_to do |format|
       if @text_blog.update(text_blog_params)
         format.html { redirect_to @text_blog, notice: '更新成功' }
