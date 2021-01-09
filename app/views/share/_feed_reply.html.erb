@@ -3,12 +3,13 @@
     <% @feed_items.each do |feed_item| %>
       <tr class="success">
         <td colspan="3">
-          用户&nbsp<%= User.find(feed_item.reply.send_user_id).name %>
-          &nbsp回复<%= User.find(feed_item.reply.receive_user_id).name %>
+          用户&nbsp<%= gravatar_image(@user,size:32) %><%= User.find(feed_item.reply.send_user_id).name %>  
+          &nbsp回复&nbsp<%= gravatar_image(@user,size:32) %><%= User.find(feed_item.reply.receive_user_id).name %>
         </td>
       </tr> 
         <td><%= feed_item.reply.content %></td>
-        <td><%= radio_button_tag :receiver_id, feed_item.reply.send_user_id, 1 %>回复</td>
+        <td><%= radio_button_tag :receiver_id, feed_item.reply.send_user_id, 1 %>回复<br><br><br></td>
+        
       </tr>
     <% end %>
 </table>
