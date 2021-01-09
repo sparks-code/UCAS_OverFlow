@@ -16,7 +16,7 @@
                         <% if @text_blogs %>
                             <% @text_blogs.each do |blog| %>
                                 <tr>
-                                    <td><%= blog.title %></td>
+                                    <td><%= link_to blog.title, blog %></td>
                                     <td><%= blog.tag.name %></td>
                                     <td><%= blog.response_count %></td>
                                     <td><%= blog.click_count %></td>
