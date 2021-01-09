@@ -68,7 +68,7 @@ class ResourceBlogsController < ApplicationController
       @resource_blog.file_path = filename
       file_size = file.size/1000000
       if Integer(file_size) == 0
-        file_size = '<1MB'
+        file_size = '<1'
       end
       @resource_blog.file_size = "#{file_size}MB"
     end
