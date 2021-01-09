@@ -19,9 +19,9 @@
       <div class="col-sm-12 textBlogMessage">
         
         <h4>
-          作者：<%= gravatar_image(@text_blog.user,size:44) %>
+          作者：<%= gravatar_image(@text_blog.user,size:33) %>&nbsp&nbsp
           <%= @text_blog.user.name %>
-          &nbsp&nbsp板块：
+          &nbsp&nbsp&nbsp板块：
           <%= @text_blog.tag.name %>
           &nbsp&nbsp回复数：
           <%= @text_blog.response_count %>

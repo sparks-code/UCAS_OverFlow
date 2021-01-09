@@ -17,9 +17,9 @@
       </div>
 
       <div class="col-sm-12 resourceBlogMessage">
-        <h5>作者：<%= gravatar_image(@resource_blog.user,size:44)
+        <h5>作者：<%= gravatar_image(@resource_blog.user,size:33) %> &nbsp&nbsp
           <%= @resource_blog.user.name %>
-          &nbsp&nbsp板块：
+          &nbsp&nbsp&nbsp板块：
           <%= @resource_blog.tag.name %>
           &nbsp&nbsp文件大小：
           <%= @resource_blog.file_size %>

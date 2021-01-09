@@ -3,11 +3,11 @@
     <% @feed_items.each do |feed_item| %>
       <tr class="success">
         <td colspan="3">
-          用户&nbsp<%= gravatar_image(User.find(feed_item.reply.send_user_id),size:32) %><%= User.find(feed_item.reply.send_user_id).name %>  
-          &nbsp回复&nbsp<%= gravatar_image(User.find(feed_item.reply.receive_user_id),size:32) %><%= User.find(feed_item.reply.receive_user_id).name %>
+          用户&nbsp&nbsp&nbsp<%= gravatar_image(User.find(feed_item.reply.send_user_id),size:22) %>&nbsp<%= User.find(feed_item.reply.send_user_id).name %>  
+          &nbsp&nbsp回复&nbsp&nbsp&nbsp<%= gravatar_image(User.find(feed_item.reply.receive_user_id),size:22) %>&nbsp<%= User.find(feed_item.reply.receive_user_id).name %>
         </td>
       </tr> 
-        <td><%= feed_item.reply.content %></td>
+        <td><br><%= feed_item.reply.content %></td>
         <td><%= radio_button_tag :receiver_id, feed_item.reply.send_user_id, 1 %>回复<br><br><br></td>
         
       </tr>
