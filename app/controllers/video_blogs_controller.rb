@@ -82,6 +82,7 @@ class VideoBlogsController < ApplicationController
   # PATCH/PUT /video_blogs/1
   # PATCH/PUT /video_blogs/1.json
   def update
+    @all_tags = Tag.get_all_tags
     respond_to do |format|
       if @video_blog.update(video_blog_params)
         format.html { redirect_to @video_blog, notice: '更新成功' }
