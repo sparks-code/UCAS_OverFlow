@@ -1,0 +1,8 @@
+<ul class="nav nav-pills nav-stacked col-sm-1">
+    <li class = "<%="active" if @tag_id==-1%>" ><a href= <%= resource_blogs_url %> >全部资源</a></li>    
+    <% @tags.each do |tag| %>
+        <li class = "<%="active" if @tag_id==tag.id%>" > <a href= <%= resource_show_tag_url(:id => tag.id) %> > <%=tag.name%> </a></li>
+    <% end %>    
+    <li class = "<%="active" if @tag_id==-1%>"><a href= <%= '/' %> > 返回首页 </a></li>
+</ul>
+
