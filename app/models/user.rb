@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
     has_many :video_blogs
     has_many :text_blogs
-    has_many :resource_blog
+    has_many :resource_blogs
 
     validates :password, confirmation: true, presence: true, allow_nil: true, length: {minimum: 9}
  
