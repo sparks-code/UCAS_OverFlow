@@ -40,6 +40,12 @@ class TextBlogsController < ApplicationController
     @text_blog.response_count = 0
     @text_blog.click_count = 0
     @text_blog.accessment = 0
+    if params[:text_blog][:title].length<2 or params[:text_blog][:title].length>40
+      flash[:danger] = "标题必须在2-50字"
+    end
+    if params[:text_blog][:content].length<5 or params[:text_blog][:content].length>500
+      flash[:danger] = "长度必须在2-500字"
+    end
     unless @text_blog.save
       render '/text_blogs/new'
     else
