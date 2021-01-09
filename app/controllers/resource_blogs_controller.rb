@@ -46,7 +46,7 @@ class ResourceBlogsController < ApplicationController
     #@resource_blog = ResourceBlog.new(resource_blog_params)
     @all_tags = Tag.get_all_tags
     @resource_blog = current_user.resource_blogs.new(resource_blog_params)
-    @resource_blog.response_count = 1
+    @resource_blog.response_count = 0
     @resource_blog.click_count = 0
     @resource_blog.accessment = 0
     unless request.get?
@@ -72,6 +72,12 @@ class ResourceBlogsController < ApplicationController
       end
       @resource_blog.file_size = "#{file_size}MB"
     end
+    if params[:resource_blog][:content].length < 5 or params[:resource_blog][:content].length > 500
+      flash[:danger] = "资源帖内容长度必须在5-500字之间"
+    end
+    if params[:resource_blog][:title].length < 2 or params[:resource_blog][:title].length > 40
+      flash[:danger] = "资源帖标题长度必须在2-40字之间"
+    end
     #保存成功，转到文件所在页面
     if @resource_blog.save
       redirect_to "/resource_blogs/#{@resource_blog.id}"
@@ -86,6 +92,12 @@ class ResourceBlogsController < ApplicationController
   # PATCH/PUT /resource_blogs/1.json
   def update
     @all_tags = Tag.get_all_tags
+    if params[:resource_blog][:content].length < 5 or params[:resource_blog][:content].length > 500
+      flash[:danger] = "资源帖内容长度必须在5-500字之间"
+    end
+    if params[:resource_blog][:title].length < 2 or params[:resource_blog][:title].length > 40
+      flash[:danger] = "资源帖标题长度必须在2-40字之间"
+    end
     respond_to do |format|
       if @resource_blog.update(resource_blog_params)
         format.html { redirect_to @resource_blog, notice: '文件已成功更新！' }
