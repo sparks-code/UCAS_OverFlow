@@ -18,6 +18,7 @@ class TextBlogsController < ApplicationController
     @text_blog.save
     @feed_items = @text_blog.feed.paginate(page: params[:page],per_page: 12)
     @user = User.find(params[:id])
+    @cuser = current_user
   end
 
   # GET /text_blogs/new
