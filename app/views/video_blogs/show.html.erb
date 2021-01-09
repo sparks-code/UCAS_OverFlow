@@ -21,7 +21,7 @@
       <p class=leading><%= @video_blog.content %></p>
 
       <div class="col-sm-12 videoBlogMessage">
-        <h5>作者：
+        <h5>作者：<%= gravatar_image(@video_blog.user,size:44)
           <%= @video_blog.user.name %>
           &nbsp&nbsp板块：
           <%= @video_blog.tag.name %>

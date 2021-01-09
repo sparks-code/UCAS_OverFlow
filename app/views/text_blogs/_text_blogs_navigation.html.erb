@@ -1,0 +1,7 @@
+<ul class="nav nav-pills nav-stacked col-sm-1">
+    <li class = "<%="active" if @tag_id==-1%>" ><a href= <%= text_blogs_url %> >全部帖子</a></li>    
+    <% @tags.each do |tag| %>
+        <li class = "<%="active" if @tag_id==tag.id%>" > <a href= <%= show_text_tag_url(:id => tag.id) %> > <%=tag.name%> </a></li>
+    <% end %>    
+</ul>
+

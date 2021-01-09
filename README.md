@@ -126,6 +126,29 @@ rails generate migration remove_activation_token_from_users activation_token:str
 rails generate migration add_login_token_to_users login_token:string  
 rails generate migration remove_login_token_from_users login_token:string
 rails generate migration add_login_digest_to_users login_digest:string  
+
+#数据库修改3
+新增tag库
+rails generate model Tag name:string
+移除tag字段并添加外键
+rails generate migration remove_tag_from_video_blogs tag:string
+rails generate migration remove_tag_from_resource_blogs tag:string
+rails generate migration remove_tag_from_text_blogs tag:string
+
+rails generate migration add_tag_ref_to_video_blog tag:references
+rails generate migration add_tag_ref_to_resource_blog tag:references
+rails generate migration add_tag_ref_to_text_blog tag:references
+
+#修改回复
+rails destroy model VideoReply
+rails destroy model TextReply
+rails destroy model ResourceReply
+
+rails generate model VideoReply  reply:references video_blog:references
+rails generate model TextReply  reply:references text_blog:references
+rails generate model ResourceReply  reply:references resource_blog:references
+
+rails generate controller VideoReplys new edit
 ```
 
 ## 部署项目
@@ -134,5 +157,5 @@ rails generate migration add_login_digest_to_users login_digest:string
 bundle install
 rails db:migrate
 rails db:seed
-rails s
+rails s -b 0.0.0.0
 ```

@@ -39,10 +39,17 @@ Rails.application.routes.draw do
   post  '/video_blogs/:id/reply', to: 'video_blogs#deal_reply', as: "video_replys"
   get '/video_blogs/tags/:id', to: 'video_blogs#show_tag', as: "show_tag"
   #get 'show_tag/:id', to: 'video_blogs#show_tag', as: "show_tag"
+##################################################################################
+  post  '/resource_blogs/:id/reply', to: 'resource_blogs#deal_reply', as: "resource_replys" 
+  get '/resource_blogs/tags/:id', to: 'resource_blogs#show_tag', as: "resource_show_tag"
 
-
-  root 'users#hello'
+################################################################
+  
+  post  '/text_blogs/:id/reply', to: 'text_blogs#deal_reply', as: "text_replys"
+  get '/text_blogs/tags/:id', to: 'text_blogs#show_tag', as: "show_text_tag"
+  
   # 主页
+  root 'static_pages#home'
   get '/home', to: 'static_pages#home'
 end
 

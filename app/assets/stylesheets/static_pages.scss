@@ -1,3 +1,26 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.line-limit-length {
+    max-width: 200px;
+    overflow: hidden;
+    
+    text-overflow: ellipsis;
+    
+    white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...
+    
+}
+
+.blog-part{
+    width: 85vw;
+    margin: 20px;
+    margin-left: 10vw;
+}
+.panel-body{
+    padding: 2;
+}
+
+.blog-part-table td{
+    padding-right: 20px;
+    padding-left: 5px;
+}
