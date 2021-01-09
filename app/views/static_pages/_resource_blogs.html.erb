@@ -1,12 +1,11 @@
 <div class="">
     <div class="panel panel-primary filterable">
         <div class="panel-body">
-                <table class="table table-responsive table-condensed table-hover">
+                <table class="table table-responsive table-condensed table-hover" style="table-layout:auto >
                     <caption style="font-size: 20px; padding-left:8px"><%= link_to "资源帖子", resource_blogs_path %></caption>
                     <thead>
                         <tr>
                             <th><font size="1";word-break:keep-all; white-space:nowrap;>标题</th>
-                            <th><font size="1">发帖人</th>
                             <th><font size="1">板块</th>
                             <th><font size="1";word-break:keep-all; white-space:nowrap;>回复</th>
                             <th><font size="1";word-break:keep-all; white-space:nowrap;>点击</th>
@@ -18,7 +17,6 @@
                             <% @resource_blogs.each do |blog| %>
                                 <tr>
                                     <td><%= blog.title %></td>
-                                    <td><%= blog.user.name %></td>
                                     <td><%= blog.tag.name %></td>
                                     <td><%= blog.response_count %></td>
                                     <td><%= blog.click_count %></td>
