@@ -2,6 +2,8 @@
 # author: wzl
 
 class StaticPagesController < ApplicationController
+  include UsersHelper
+  include SessionsHelper
   # 主页展示
   def home
     @text_blogs = TextBlog.order(click_count: :DESC).limit(10)
@@ -16,11 +18,18 @@ class StaticPagesController < ApplicationController
     @hotest_blogs = @hotest_blogs + @resource_blogs
     @hotest_blogs.sort!{|x, y| y.click_count <=> x.click_count}
     @hotest_blogs = @hotest_blogs[0, 10]
+    @cur_user = current_user()
+    @user_url = ''
+    if @cur_user!= nil
+      @user_url = user_url(current_user.id)
+    else
+      @user_url = "/login"
+    end
   end
 
-  def show
 
-  end
+
+
 
   
 end

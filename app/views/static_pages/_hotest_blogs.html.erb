@@ -1,8 +1,8 @@
 <div class="">
-    <div class="panel panel-primary filterable">
-        <div class="panel-body">
+    <div class="panel panel-primary filterable" style="margin-bottom: 0px;">
+        <div class="panel-body" style="margin-bottom: 0px; padding-bottom: 0px;">
                 <table class="table table-responsive table-condensed table-hover" style="table-layout:auto ">
-                    <caption style="font-size: 20px; padding-left:8px">热门帖子</caption>
+                    <caption style="font-size: 20px; padding-left:8px ">热门帖子</caption>
                     <thead>
                         <tr>
                             <th><font size="1";word-break:keep-all; white-space:nowrap;>标题</th>
@@ -23,6 +23,13 @@
                                     <td><%= blog.updated_at.strftime("%Y-%m-%d %H:%M") %></td>                                
                                 </tr>
                             <% end %>
+                             <tr>
+                                <td><%=  %></td>
+                                <td><%=  %></td>
+                                <td><%=  %></td>
+                                <td><%=  %></td>
+                                <td style="text-align:right">...</td>                    
+                            </tr>
                         <% end %>
                     </tbody>
                     
