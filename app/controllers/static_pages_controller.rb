@@ -15,6 +15,7 @@ class StaticPagesController < ApplicationController
     @hotest_blogs = @hotest_blogs + @video_blogs
     @hotest_blogs = @hotest_blogs + @resource_blogs
     @hotest_blogs.sort!{|x, y| y.click_count <=> x.click_count}
+    @hotest_blogs = @hotest_blogs[0, 10]
   end
 
   def show
