@@ -33,7 +33,7 @@ class TextBlogsController < ApplicationController
   # POST /text_blogs
   # POST /text_blogs.json
   def create
-    @text_blog = TextBlog.new(text_blog_params)
+    @text_blog = current_user.text_blogs.new(text_blog_params)
     @all_tags = Tag.get_all_tags
     @text_blog.response_count = 0
     @text_blog.click_count = 0
@@ -76,7 +76,7 @@ class TextBlogsController < ApplicationController
     ids.each{|id| Reply.find(id).destroy}
     @text_blog.destroy
     respond_to do |format|
-      format.html { redirect_to text_blogs_url, notice: '删除成功！' }
+      format.html { redirect_to user_texts_url, notice: '删除成功！' }
       format.json { head :no_content }
     end
   end

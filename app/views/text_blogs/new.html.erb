@@ -1,10 +1,8 @@
-<% provide(:title, '发布帖子') %>
-
+<% provide(:title, '发表帖子') %>
 <%= render "share/flash_message.html"%> 
-</ul>
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="blog_form_title">发布帖子</h3>
+        <h3 class="blog_form_title">发表帖子</h3>
     </div>
     <div class="panel-body">
     <%= form_for @text_blog,class: "form-inline", role:"form" do |f|%>
