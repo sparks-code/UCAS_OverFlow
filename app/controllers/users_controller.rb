@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   before_action :ensure_logged_in, except: [:new, :create]  # 除了新建用户，任何操作都要求登录
   before_action :set_background_enable, only: [:new, :edit, :create, :update]
-  after_action :set_background_disable, except: [:new, :edit, :create, :update]
+  after_action :set_background_disable, only: [:new, :edit, :create, :update]
 
   def show_user_videoblogs
     @blogs = current_user.video_blogs.paginate(page: params[:page], per_page: 12)
