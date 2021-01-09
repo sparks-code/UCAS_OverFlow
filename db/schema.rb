@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_03_104725) do
+ActiveRecord::Schema.define(version: 2021_01_07_110229) do
 
   create_table "academy_organizations", force: :cascade do |t|
     t.string "code_number"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2021_01_03_104725) do
     t.datetime "updated_at", null: false
     t.string "file_path"
     t.integer "tag_id"
+    t.string "content"
+    t.string "file_size"
     t.index ["tag_id"], name: "index_resource_blogs_on_tag_id"
     t.index ["user_id"], name: "index_resource_blogs_on_user_id"
   end
