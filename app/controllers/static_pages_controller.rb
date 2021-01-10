@@ -25,6 +25,25 @@ class StaticPagesController < ApplicationController
     else
       @user_url = "/login"
     end
+
+    @login_action = ''
+    @login_action_url = ""
+    if @cur_user!= nil
+      @login_action = "退出"
+      @login_action_url = "/login_out_for_home"
+    else
+      @login_action = "登录"
+      @login_action_url = "/login"
+    end
+
+    
+    
+
+  end
+
+  def login_out_for_home
+    login_out
+    redirect_to "/home"
   end
 
 
