@@ -10,7 +10,13 @@ class AccountActivationsController < ApplicationController
       if user.activated
         redirect_to login_url
       else
-        UserMailer.account_activation(user).deliver_now
+        begin
+          UserMailer.account_activation(user).deliver_now
+        rescue
+          flash[:error]="发送邮件出错，请检查您的邮箱是否有效"
+          redirect_to login_url
+          return
+        end
       end
     else
       redirect_to login_url
@@ -36,7 +42,13 @@ class AccountActivationsController < ApplicationController
   def activate_new_page
     user = User.find_by(:id => params[:activate_id])
     if user.new_email
-      UserMailer.new_account_activation(user).deliver_now
+      begin
+        UserMailer.new_account_activation(user).deliver_now
+      rescue
+        flash[:error]="发送邮件出错，请检查您的邮箱是否有效"
+        redirect_to user
+        return
+      end
     else
       flash[:error] = "查找待激活邮箱时发生错误，您可以再次尝试"
       redirect_to user
@@ -70,9 +82,14 @@ class AccountActivationsController < ApplicationController
 
   def activate_login_page
     @user = User.find_by(:id => params[:login_id])
-
     if @user.email
-      UserMailer.email_login_activation(@user).deliver_now
+      begin
+        UserMailer.email_login_activation(@user).deliver_now
+      rescue
+        flash[:error]="发送邮件出错，请检查您的邮箱是否有效"
+        redirect_to email_login_url
+        return
+      end
     else
       flash[:error] = "查找邮箱时发生错误，您可以再次尝试"
       redirect_to email_login_url
