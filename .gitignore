@@ -31,4 +31,4 @@
 /config/master.key
 
 /app/assets/videos/
-/app/db/seeds.rb
+/db/seeds.rb
