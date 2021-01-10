@@ -51,5 +51,6 @@ Rails.application.routes.draw do
   # 主页
   root 'static_pages#home'
   get '/home', to: 'static_pages#home'
+  get '/login_out_for_home', to: 'static_pages#login_out_for_home'
 end
 
