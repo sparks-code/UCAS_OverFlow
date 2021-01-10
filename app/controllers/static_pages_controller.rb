@@ -4,6 +4,8 @@
 class StaticPagesController < ApplicationController
   include UsersHelper
   include SessionsHelper
+
+  before_action :set_background_disable
   # 主页展示
   def home
     @text_blogs = TextBlog.order(click_count: :DESC).limit(10)
@@ -28,8 +30,8 @@ class StaticPagesController < ApplicationController
   end
 
 
-
-
-
-  
+  private
+    def set_background_disable
+      $user_background = false
+    end
 end
