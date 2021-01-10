@@ -155,7 +155,7 @@ class ResourceBlogsController < ApplicationController
       redirect_to "/video_blogs/#{@video_blog.id}"
       return
     end 
-    unless params[:receive_user_id]
+    unless params[:receive_id]
       flash[:danger] = "请选择回复按钮"
       redirect_to "/video_blogs/#{@video_blog.id}"
       return
