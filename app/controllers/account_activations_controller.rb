@@ -1,6 +1,9 @@
 class AccountActivationsController < ApplicationController
   include SessionsHelper
 
+  before_action :set_background_enable, only: [:activate_page, :activate_login_page, :activate_new_page]
+  after_action :set_background_disable, only: [:activate_page, :activate_login_page, :activate_new_page]
+
   def activate_page
     user = User.find_by(:id => params[:activate_id])
     if user 
@@ -76,4 +79,12 @@ class AccountActivationsController < ApplicationController
     end
   end
 
+  private
+    def set_background_enable
+      $user_background = true
+    end
+
+    def set_background_disable
+      $user_background = false
+    end
 end
