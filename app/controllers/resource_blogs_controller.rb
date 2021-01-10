@@ -144,28 +144,27 @@ class ResourceBlogsController < ApplicationController
 
   # POST /resource_blogs/1/reply
   def deal_reply
-    #set_resource_blog 发表评论，计数+1
-    if params[:content].length<2
+     #set_resource_blog
+     if params[:content].length<2
       flash[:danger] = "评论太短，至少2个字符"
-      redirect_to "/video_blogs/#{@video_blog.id}"
+      redirect_to "/resource_blogs/#{@resource_blog.id}"
       return
     end 
     if params[:content].length>50
       flash[:danger] = "评论太长，至多50个字符"
-      redirect_to "/video_blogs/#{@video_blog.id}"
+      redirect_to "/resource_blogs/#{@resource_blog.id}"
       return
     end 
     unless params[:receiver_id]
       flash[:danger] = "请选择回复按钮"
-      redirect_to "/video_blogs/#{@video_blog.id}"
+      redirect_to "/resource_blogs/#{@resource_blog.id}"
       return
     end
     @resource_blog.response_count += 1
-  #@resource_blog.save
+    #@resource_blog.save
     @reply = Reply.create(send_user_id: current_user.id,receive_user_id: params[:receiver_id], content: params[:content]) 
     @resource_reply = @resource_blog.resource_replys.new
     @resource_reply.reply_id = @reply.id
-    #评论字数限制
     if params[:content].length<2 or params[:content].length>50
       flash[:danger] = "回复长度必须在2-50字"
     end
