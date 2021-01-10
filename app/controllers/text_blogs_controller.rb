@@ -92,6 +92,21 @@ class TextBlogsController < ApplicationController
 
   def deal_reply
     #set_text_blog
+    if params[:content].length<2
+      flash[:danger] = "评论太短，至少2个字符"
+      redirect_to "/video_blogs/#{@video_blog.id}"
+      return
+    end 
+    if params[:content].length>50
+      flash[:danger] = "评论太长，至多50个字符"
+      redirect_to "/video_blogs/#{@video_blog.id}"
+      return
+    end 
+    unless params[:receive_user_id]
+      flash[:danger] = "请选择回复按钮"
+      redirect_to "/video_blogs/#{@video_blog.id}"
+      return
+    end
     @text_blog.response_count += 1
     #@text_blog.save
     @reply = Reply.create(send_user_id: current_user.id,receive_user_id: params[:receiver_id], content: params[:content]) 
