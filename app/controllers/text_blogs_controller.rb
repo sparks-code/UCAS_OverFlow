@@ -91,36 +91,36 @@ class TextBlogsController < ApplicationController
   end
 
   def deal_reply
-    #set_text_blog
-    if params[:content].length<2
-      flash[:danger] = "评论太短，至少2个字符"
-      redirect_to "/video_blogs/#{@video_blog.id}"
-      return
-    end 
-    if params[:content].length>50
-      flash[:danger] = "评论太长，至多50个字符"
-      redirect_to "/video_blogs/#{@video_blog.id}"
-      return
-    end 
-    unless params[:receiver_id]
-      flash[:danger] = "请选择回复按钮"
-      redirect_to "/video_blogs/#{@video_blog.id}"
-      return
-    end
-    @text_blog.response_count += 1
-    #@text_blog.save
-    @reply = Reply.create(send_user_id: current_user.id,receive_user_id: params[:receiver_id], content: params[:content]) 
-    @text_reply = @text_blog.text_replys.new
-    @text_reply.reply_id = @reply.id
-    if params[:content].length<2 or params[:content].length>50
-      flash[:danger] = "回复长度必须在2-50字"
-    end
-    if @text_blog.save
-      flash[:success] = "发表成功"
-    else
-      flash[:danger] = "发表失败"
-    end
+  #set_text_blog
+  if params[:content].length<2
+    flash[:danger] = "评论太短，至少2个字符"
     redirect_to "/text_blogs/#{@text_blog.id}"
+    return
+  end 
+  if params[:content].length>50
+    flash[:danger] = "评论太长，至多50个字符"
+    redirect_to "/text_blogs/#{@text_blog.id}"
+    return
+  end 
+  unless params[:receiver_id]
+    flash[:danger] = "请选择回复按钮"
+    redirect_to "/text_blogs/#{@text_blog.id}"
+    return
+  end
+  @text_blog.response_count += 1
+  #@text_blog.save
+  @reply = Reply.create(send_user_id: current_user.id,receive_user_id: params[:receiver_id], content: params[:content]) 
+  @text_reply = @text_blog.text_replys.new
+  @text_reply.reply_id = @reply.id
+  if params[:content].length<2 or params[:content].length>50
+    flash[:danger] = "回复长度必须在2-50字"
+  end
+  if @text_blog.save
+    flash[:success] = "发表成功"
+  else
+    flash[:danger] = "发表失败"
+  end
+  redirect_to "/text_blogs/#{@text_blog.id}"
   end
 
   def show_tag
