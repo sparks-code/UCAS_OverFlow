@@ -41,8 +41,8 @@ Rails.application.configure do
   #  address:              'smtp.163.com',
   #  port:                 "25",
   #  domain:               'www.163.com',
-  #  user_name:           'ucas_overflow@163.com', #比如我的是:'sai@163.com'
-  #  password:             'HENHZASQIBQZWXJI', #比如我的邮箱密码:'bugaosuni'
+  #  user_name:           '', #比如我的是:'sai@163.com'
+  #  password:             '', #比如我的邮箱密码:'bugaosuni'
   #  authentication:       :plain,
   #  enable_starttls_auto: true
   #}
